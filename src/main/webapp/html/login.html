@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../js/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="all" href="../css/login.css">
+<title>login</title>
+
+</head>
+<body>
+  <div class="login_container">
+
+    <div class="omb_login">
+
+      <div class="row omb_row-sm-offset-3 omb_loginOr" style="width: 100%">
+        <div class="col-xs-12 col-sm-3">
+          <hr class="omb_hrOr">
+        </div>
+      </div>
+
+      <div class="row omb_row-sm-offset-3" style="width: 100%">
+        <div class="col-xs-12 col-sm-3">
+          <form class="omb_loginForm" action="" autocomplete="off">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" id="login-email"
+                class="form-control input-input" name="username"
+                placeholder="이메일">
+            </div>
+            <span class="help-block"></span>
+
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input type="password" id="login-password"
+                class="form-control input-input" name="password" onKeyDown="onKeyDown();"
+                placeholder="비밀번호">
+            </div>
+            <br>
+            <button id="login-btn"
+              class="btn btn-lg btn-primary btn-block btnn" type="button">로그인</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="save-find-form">
+        <label class="checkbox"> <input type="checkbox"
+          value="remember-me">저장하기
+        </label>
+        <div class="id-pass-find">아이디/비밀번호 찾기</div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</body>
+<script src='../js/node_modules/jquery/dist/jquery.min.js'></script>
+<script src="../js/login.js"></script>
+
+</html>
