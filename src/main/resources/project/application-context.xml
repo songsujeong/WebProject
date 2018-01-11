@@ -4,7 +4,7 @@
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:aop="http://www.springframework.org/schema/aop"
     xmlns:tx="http://www.springframework.org/schema/tx"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans.xsd
       http://www.springframework.org/schema/context
       http://www.springframework.org/schema/context/spring-context.xsd
@@ -14,7 +14,7 @@
       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
   <!-- 페이지 컨트롤러를 제외한 웹에서 사용할 공통 객체 준비-->
-  <context:component-scan base-package="donghwa">
+	<context:component-scan base-package="project">
     <context:exclude-filter type="aspectj" expression="project.control.*"/>
   </context:component-scan>
   
@@ -38,20 +38,20 @@
     
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>
-    <property name="typeAliasesPackage" value="donghwa.domain"/>
-    <property name="mapperLocations" value="classpath*:donghwa/dao/*Dao.xml"/>
+    <property name="typeAliasesPackage" value="project.domain"/>
+    <property name="mapperLocations" value="classpath*:project/dao/*Dao.xml"/>
   </bean>
   
   <!-- DAO 인터페이스의 구현체를 자동으로 생성할 객체 준비 -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="donghwa.dao"/>
+    <property name="basePackage" value="project.dao"/>
   </bean>
   
   <!-- 트랜잭션을 처리하는 방법1 -->
   <!-- point-cut과 advice 지정 -->
   <aop:config>
     <aop:pointcut id="defaultServiceOperation"
-                expression="execution(* donghwa.service.*Service.*(..))"/>
+                expression="execution(* project.service.*Service.*(..))"/>
     <aop:advisor pointcut-ref="defaultServiceOperation" advice-ref="defaultTxAdvice"/>
   </aop:config>
   

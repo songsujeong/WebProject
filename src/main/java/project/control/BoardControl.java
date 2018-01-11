@@ -32,6 +32,7 @@ public class BoardControl {
       @RequestParam(defaultValue="1") int pageNo, 
       @RequestParam(defaultValue="5") int pageSize) throws Exception {
     
+    System.out.println("들어왔따");
     HashMap<String,Object> dataMap = new HashMap<>();
     dataMap.put("list", boardService.list(pageNo, pageSize));
     dataMap.put("totalCount", boardService.getSize());

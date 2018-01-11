@@ -58,6 +58,7 @@ public class AuthControl {
   
   @RequestMapping("userinfo")
   public JsonResult userinfo(HttpSession session) throws Exception {
+    System.out.println("들어옴1");
     Member loginMember = (Member)session.getAttribute("loginMember");
     return new JsonResult(JsonResult.SUCCESS, loginMember);
   }
