@@ -9,15 +9,15 @@
 
 .header
 {
+	margin-top:70px;
 	width: 100%;
-	height: 150px;
-	background-color: lavenderblush;
+
 	
 }
 
 .login_container
 {
-	margin-top: 50px;
+	margin-top: 150px;
 }
 
 #login_email 
@@ -34,11 +34,31 @@
     height: 50px;
 }
 
+.logBtn
+{
+	width: 200px;
+    margin-left: 770px;
+}
+
 
 </style>
 
 <body>
-<div class="header"></div>
+<div class="header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">ShareHouse</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Main</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
 
   <div class="login_container">
   	<div class="id_box">
@@ -50,8 +70,8 @@
   	</div>
   	<br>
   	<div class="logBtn">
-  		<button class="btn btn-lg" id="login_btn" type="button">로그인</button>
-  		<button class="btn btn-lg" id="join_btn" type="button">회원가입</button>
+  		<button class="btn btn-default" id="login_btn" type="button" >로그인</button>
+  		<button class="btn btn-default" id="join_btn" type="button">회원가입</button>
   	</div>
 </div>
  
@@ -59,5 +79,4 @@
 </body>
 <script src='../node_modules/jquery/dist/jquery.min.js'></script>
 <script type="text/javascript" src='../js/login.js'></script>
-
 </html>

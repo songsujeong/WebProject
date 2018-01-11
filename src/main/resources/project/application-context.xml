@@ -15,7 +15,7 @@
 
   <!-- 페이지 컨트롤러를 제외한 웹에서 사용할 공통 객체 준비-->
 	<context:component-scan base-package="project">
-    <context:exclude-filter type="aspectj" expression="project.control.*"/>
+    <context:exclude-filter type="aspectj" expression="project.control"/>
   </context:component-scan>
   
   <!-- 설정 파일에서 사용할 정보를 담은 .properties 파일 로딩하기 -->
@@ -39,7 +39,7 @@
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>
     <property name="typeAliasesPackage" value="project.domain"/>
-    <property name="mapperLocations" value="classpath*:project/dao/*Dao.xml"/>
+    <property name="mapperLocations" value="classpath*:sql/*Dao.xml"/>
   </bean>
   
   <!-- DAO 인터페이스의 구현체를 자동으로 생성할 객체 준비 -->
