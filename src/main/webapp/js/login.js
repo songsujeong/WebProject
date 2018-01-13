@@ -1,15 +1,18 @@
+$(document).ready(function(){
+	$("#header").load("header.html")
+})
 
 
 $('#login_btn').on('click',function(e) {
 	$.post('login2.json', {
 		'email': $('#login_email').val(),
 		'password': $('#login_pwd').val()
+		
 	}, function(result) {
 		if(result.status=="success")
 		{
-			console.log("로그인성공...");
-			// console.log();
-			location.href = 'boader.html'
+			console.log("로그인성공..");
+			location.href = 'board.html'
 //				$('.login-link').css('display', 'none');
 //			$('.logout-link').css('display', 'block');
 
@@ -28,8 +31,7 @@ function enter(){
 	}, function(result) {
 		if(result.status=="success")
 		{
-			// console.log();
-			location.href = 'boader.html'
+			location.href = 'board.html'
 //				$('.login-link').css('display', 'none');
 //			$('.logout-link').css('display', 'block');
 

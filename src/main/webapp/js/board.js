@@ -1,3 +1,7 @@
+$(document).ready(function(){
+	$("#header").load("header.html")
+})
+
 //var word = $("#keyword");
 //var mno;
 //

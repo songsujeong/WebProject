@@ -11,7 +11,7 @@
       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
   <!-- *.json 요청을 처리할 페이지 컨트롤러 생성 -->
-  <context:component-scan base-package="project.control"/>
+  <context:component-scan base-package="project.control.*"/>
   
   <!-- Spring WebMVC 관련 기능을 처리할 객체를 등록한다. -->
   <mvc:annotation-driven/>
