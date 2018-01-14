@@ -1,24 +1,30 @@
 .login_container
 {
-	margin-top: 150px;
+   margin-top: 150px;
 }
 
 #login_email 
 {
-	margin: 0 auto;
+   margin: 0 auto;
     width: 400px;
     height: 50px;
 }
 
 #login_pwd
 {
-	margin: 0 auto;
+   margin: 0 auto;
     width: 400px;
     height: 50px;
 }
 
+.logBtn_div
+{
+    margin: 0 auto;
+    width: 400px;
+}
+
 .logBtn
 {
-	width: 200px;
-    margin-left: 770px;
+ 
+    margin: 0 0 0 494px;
 }

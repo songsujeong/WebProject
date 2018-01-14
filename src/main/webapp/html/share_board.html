@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/share_board.css">
+</head>
+<body>
+
+
+<div id="header"></div>
+<div class="share_board_container">
+	<div class="share_btn_container">
+		<input type="search" placeholder="검색" id="keyword">
+		<button class="btn btn-default" id="add_btn">등록</button>
+	</div>
+	
+	<br><br>
+	
+	<div class="board_table">
+		<table class="table table-bordered" id="share_table">
+		<thead>
+		<tr id="table_header">
+			<td>글 번호</td>
+			<td>제목</td>
+			<td>작성일</td>
+			<td>조회수</td>
+			<td>추천수</td>
+		</tr>
+		</thead>
+			<tbody>	
+			</tbody>
+	  	</table>
+	</div>
+	
+	
+	
+</div>
+
+
+<div class="bord-container_round">
+
+  <div class="bord-container">
+    <div id="com-titl-bord" class="bord-top">
+        <div class="bord-button">
+        <div id="board-position">
+          <div class="board_search">
+            <input type="search" placeholder="검색" id="keyword">
+          </div>
+          <div class="board_button">
+            <button class="btn" id="bord-btn">+새로운게시글</button>
+
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+  <span class="btn btn-success fileinput-button">
+    <i class="glyphicon glyphicon-plus"></i>
+    <span>파일 선택...</span>
+    <input id="fileupload" type="file" name="files" multiple>
+</span>
+
+
+
+
+      <div class="page-btn">
+        <button type="button" class="btnForm" id="prev-btn">이전</button>
+        &nbsp;&nbsp;<span id="page-no">1</span>&nbsp;&nbsp;
+        <button type="button" class="btnForm" id="next-btn">다음</button>
+      </div>
+
+
+</div>
+
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+<script type="text/javascript" src="../js/share_board.js"></script>
+<script id="tbody-template" type="text/x-handlebars-template">
+  {{#each list}}
+	<table id="table_board">
+<colgroup>
+	<col width="4%">
+	<col width="*">
+	<col width="15%">
+	<col width="7%">
+	<col width="7%">
+</colgroup>
+
+   <tr id="board_tr" data-no ={{no}}>
+     <td style="border: 0px;">{{no}}</td>
+     <td style="border: 0px;">{{bw_titl}}</td>
+     <td style="border: 0px;">{{bw_wdt}}</td>
+     <td style="border: 0px;">{{bw_wdt}}</td>
+	<td style="border: 0px;">{{bw_wdt}}</td>
+   </tr>
+  {{/each}}
+
+
+  {{#each TogetherList}}
+          <div class="content_box" data-a="{{ctno}}" data-b="{{bkno}}">
+             <img src="{{BK_IMG}}"  style="cursor:pointer">
+             <div class = "text_box">
+               <div class="titl"  style="cursor:pointer">{{MBK_Titl}}</div>
+               <div class="date"  style="cursor:pointer">{{Ct_Date}}</div>
+               <div class="cont"  style="cursor:pointer">{{Ct_Dscp}}</div>
+               <div class="like"><div class="name">작성자: {{name}}</div><div class="heart{{ctno}} heart-box" data-no={{ctno}} onClick="like({{ctno}})"><a class="fa fa-heart-o heart" aria-hidden="true"></a><div class ="like_count like_count_no{{ctno}}">{{likeCount}}</div></div></div>
+             </div>
+          </div>
+    {{/each}}
+
+
+</script>
+</body>
+
+</html>

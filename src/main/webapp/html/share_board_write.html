@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../css/share_board_write.css">
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+<title>쉐어하우스 등록</title>
+</head>
+<body>
+<div id="header"></div>
+
+ <div class="share_board_write_container">
+ 	<div class="form-group">
+	 	<label for="title">제목:</label>
+	  	<input type="text" class="form-control" id="bw_titl">
+	</div>
+ 	
+ 	<div class="form-group">
+	 	<label for="comment">내용:</label>
+	 	<textarea class="form-control" rows="10" id="bw_con" placeholder="내용을 입력하세요"></textarea>
+	</div>
+	
+	<div class="form-group"> 
+		<label for="File">File upload</label> 
+		<input type="file" id="File"> 
+	</div> 
+		
+	<div class="center-block" style='width:200px'> 
+		<button class="btn btn-default" id="add">등록</button>
+		<button class="btn btn-default" id="cln">취소</button>
+	</div> 
+
+</div>
+ 
+
+</body>
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script type="text/javascript" src='../js/share_board_write.js'></script>
+</html>

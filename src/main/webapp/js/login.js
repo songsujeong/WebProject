@@ -12,7 +12,7 @@ $('#login_btn').on('click',function(e) {
 		if(result.status=="success")
 		{
 			console.log("로그인성공..");
-			location.href = 'board.html'
+			location.href = 'share_board.html'
 //				$('.login-link').css('display', 'none');
 //			$('.logout-link').css('display', 'block');
 
@@ -21,7 +21,7 @@ $('#login_btn').on('click',function(e) {
 			console.log(result.data)
 		}
 	}, 'json')
-	 e.preventDefault();
+	// e.preventDefault();
 })
 
 function enter(){
@@ -31,7 +31,7 @@ function enter(){
 	}, function(result) {
 		if(result.status=="success")
 		{
-			location.href = 'board.html'
+			location.href = 'share_board.html'
 //				$('.login-link').css('display', 'none');
 //			$('.logout-link').css('display', 'block');
 

@@ -21,7 +21,7 @@ public class BoardControl {
   @Autowired BoardService boardService;
   
   
-  @RequestMapping("conAdd")
+  @RequestMapping("boardAdd")
   public JsonResult conAdd(Board board) throws Exception {
     boardService.conAdd(board);
     return new JsonResult(JsonResult.SUCCESS, "ok");
