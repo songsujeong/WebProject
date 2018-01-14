@@ -83,13 +83,11 @@
       bw_edt=curdate()
       where bwno = #{no}
   </update>
+  
+  <update id="hitsUpdate" parameterType="int">
+  UPDATE BOARDWRITE 
+     SET BW_HITS = BW_HITS + 1 
+   WHERE BWNO = #{bwno}
+  </update>
 </mapper>
-
-
-
-
-
-
-
-
 

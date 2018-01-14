@@ -73,6 +73,12 @@ public class BoardServiceImpl implements BoardService {
 	    }
 	  }
 
+@Override
+public int hitsUpdate(int bwno) throws Exception {
+	int count = boardDao.hitsUpdate(bwno);
+	return count;
+}
+
 
 
 

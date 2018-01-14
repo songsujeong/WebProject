@@ -14,4 +14,5 @@ public interface BoardDao {
   Board selectOne(int no);
   int delete(int no);
   int contextUpdate(Board board);
+  int hitsUpdate(int bwno);
 }

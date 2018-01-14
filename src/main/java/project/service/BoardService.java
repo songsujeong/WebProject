@@ -14,6 +14,7 @@ public interface BoardService {
   Board get(int no) throws Exception;
   void remove(int no) throws Exception;
   void conUpdate(Board board) throws Exception;
+  int hitsUpdate(int bwno) throws Exception;
 }
 
 

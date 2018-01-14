@@ -74,6 +74,12 @@ public class BoardControl {
     boardService.conUpdate(board);
     return new JsonResult(JsonResult.SUCCESS, "ok");
   }
+  
+  @RequestMapping("hitsUpdate")
+  public JsonResult conUpdate(int bwno) throws Exception {
+    boardService.hitsUpdate(bwno);
+    return new JsonResult(JsonResult.SUCCESS, "ok");
+  }
 
 
 }

@@ -203,7 +203,7 @@ function displayList(pageNo){
 /************************************************/
 
 $(document.body).on('click', '.board', function(event){
-	location.href = 'board_detail.html?no=' + $(this).attr('data-no')
+	location.href = 'share_board_detail.html?no=' + $(this).attr('data-no')
 	
 //	event.preventDefault()
 })
