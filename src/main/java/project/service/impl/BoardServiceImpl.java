@@ -19,7 +19,7 @@ public class BoardServiceImpl implements BoardService {
   
   
   
-  public void conAdd(Board board) throws Exception {
+  public void boardAdd(Board board) throws Exception {
 	    boardDao.contextInsert(board);
 	  }
   
@@ -78,8 +78,6 @@ public int hitsUpdate(int bwno) throws Exception {
 	int count = boardDao.hitsUpdate(bwno);
 	return count;
 }
-
-
 
 
 }

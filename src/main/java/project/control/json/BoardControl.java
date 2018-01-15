@@ -1,5 +1,6 @@
 package project.control.json;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import project.control.json.JsonResult;
 import project.domain.Board;
 import project.service.BoardService;
 
@@ -21,11 +24,11 @@ public class BoardControl {
   @Autowired BoardService boardService;
   
   
-  @RequestMapping("boardAdd")
-  public JsonResult conAdd(Board board) throws Exception {
-    boardService.conAdd(board);
+/*  @RequestMapping("boardAdd")
+  public JsonResult boardAdd(Board board) throws Exception {
+    boardService.boardAdd(board);
     return new JsonResult(JsonResult.SUCCESS, "ok");
-  }
+  }*/
   
   @RequestMapping("list")
   public JsonResult list(
@@ -39,6 +42,25 @@ public class BoardControl {
     
     return new JsonResult(JsonResult.SUCCESS, dataMap);
   }
+  
+  @RequestMapping(path="boardAdd")
+  public JsonResult fileupload(Board board, MultipartFile[] files) throws Exception {
+  	  System.out.println(files.length);
+      files[0].transferTo(new File(servletContext.getRealPath("/upload/" + files[0].getOriginalFilename())));
+      
+      board.setBw_filepath("/upload/" + files[0].getOriginalFilename());
+     
+      boardService.boardAdd(board);
+      
+    System.out.println(board);
+    return new JsonResult(JsonResult.SUCCESS, "ok");
+  }
+  
+  
+  
+  
+  
+  
 //  /*************************************************/
   @RequestMapping("suchList")
   public JsonResult suchList(

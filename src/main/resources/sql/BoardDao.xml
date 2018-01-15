@@ -15,18 +15,19 @@
     <result column="bw_edt" property="bw_edt"/>
     <result column="bw_hits" property="bw_hits"/>
     <result column="bw_div" property="bw_div"/>
+    <result column="bw_filepath" property="bw_filepath"/>
   </resultMap>
 
   
   
   
   <insert id="contextInsert">
-    insert into boardwrite(mno, bw_titl, bw_con, bw_wdt, bw_div) 
-    values(#{mno}, #{bw_titl}, #{bw_con}, curdate(), #{bw_div})
+    insert into boardwrite(mno, bw_titl, bw_con, bw_wdt, bw_div, bw_filepath) 
+    values(#{mno}, #{bw_titl}, #{bw_con}, curdate(), #{bw_div}, #{bw_filepath})
   </insert>
   
    <select id="selectList" resultMap="boardMap" parameterType="map">
-    select bw.bwno, bw.bw_titl, bw.bw_con, bw.bw_wdt, m.name,bw.bw_div
+    select bw.bwno, bw.bw_titl, bw.bw_con, bw.bw_wdt, m.name,bw.bw_div, bw.bw_filepath
     from boardwrite bw inner join member m on bw.mno = m.mno
     where bw_div = 'board' 
     order by bwno desc
@@ -34,14 +35,14 @@
   </select>
   
   <select id="selectOne" resultMap="boardMap" parameterType="int">
-    select  m.name, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bwno , bf.filepath, bf.filename, m.mno
+    select  m.name, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bwno , bw.bw_filepath, bf.filepath, bf.filename, m.mno
     from boardwrite bw inner join member m on bw.mno = m.mno
                        left outer join boardfile bf on bw.bwno = bf.bwno
     where bw.bwno= #{no}
   </select>
   
    <select id="selectListByTitle" resultMap="boardMap" parameterType="map">
-    select bw.bwno, bw.bw_titl, bw.bw_con, bw.bw_wdt, m.name
+    select bw.bwno, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bw_filepath, m.name
     from boardwrite bw inner join member m on bw.mno = m.mno
     where bw_titl like '%${keyword}%' and bw_div = 'board'
     ORDER BY bwno DESC

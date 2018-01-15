@@ -73,6 +73,7 @@ var pageNoTag = $('#page-no')  // 매번 이걸 찾으면 안좋다 찾아놓은
 //})
 
 displayList(1);
+/*
 function displayList2(pageNo){
 	// 서버에서 강사 목록 데이터를 받아 온다.
   $.getJSON('suchList.json', {'pageNo':pageNo, 'pageSize':pageSize , 'keyword':word.val()}, function(result) {// url, 서버에 보낼 데이터, 서버에서 받을 함수 비동기 방식
@@ -81,8 +82,10 @@ function displayList2(pageNo){
 
   var templateFn = Handlebars.compile($('#tbody-template').text())
   var generatedHTML = templateFn(result.data)
-    tbody.text('')
-    tbody.html(generatedHTML)  // 문자열 html을 리턴한다.
+  console.log(result.data)
+  var container = $('#share_container') 
+//    container.text('')
+    container.html(generatedHTML)  // 문자열 html을 리턴한다.
     
     console.log(result)
     currPageNo = pageNo
@@ -105,7 +108,7 @@ function displayList2(pageNo){
     
   })
 }
-
+*/
 
 
 /*****************************************************/
@@ -165,41 +168,41 @@ function displayList(pageNo){
 	// 서버에서 강사 목록 데이터를 받아 온다.
   console.log("실행됬다")
 //	setTimeout(() => {
-		console.log(pageNo, pageSize)
+		
+ // console.log(pageNo, pageSize)
   $.getJSON('list.json', {'pageNo':pageNo, 'pageSize':pageSize}, function(result) {// url, 서버에 보낼 데이터, 서버에서 받을 함수 비동기 방식
 
 	  var totalCount = result.data.totalCount
-  console.log(result.data)
-  var lastPageNo = parseInt(totalCount / pageSize) + (totalCount % pageSize > 0 ? 1: 0)
+	  var lastPageNo = parseInt(totalCount / pageSize) + (totalCount % pageSize > 0 ? 1: 0)
 
-  var templateFn = Handlebars.compile($('#tbody-template').text())
-  var generatedHTML = templateFn(result.data)
-    tbody.text('')
-    tbody.html(generatedHTML)  // 문자열 html을 리턴한다.
-    
-    currPageNo = pageNo
-    pageNoTag.text(currPageNo)
-    if(currPageNo == 1){
-      prevBtn.prop('disabled', true)
-      prevBtn.addClass("disable")
-    } else {
-      prevBtn.prop('disabled', false)
-      prevBtn.removeClass("disable")
-    }
+	  var templateFn = Handlebars.compile($('#tbody-template').text())
+	  var generatedHTML = templateFn(result.data)
+	  console.log(result.data)
+	  var container = $('#share_container') 
+	    container.text('')
+	    container.html(generatedHTML)  // 문자열 html을 리턴한다.
+	    
+	    console.log(result)
+	    currPageNo = pageNo
+	    pageNoTag.text(currPageNo)
+	    if(currPageNo == 1){
+	      prevBtn.prop('disabled', true)
+	      prevBtn.addClass("disable")
+	    } else {
+	      prevBtn.prop('disabled', false)
+	      prevBtn.removeClass("disable")
+	    }
 
-    if(currPageNo == lastPageNo){
-      nextBtn.prop('disabled', true)
-      nextBtn.addClass("disable")
-    } else {
-      nextBtn.prop('disabled', false)
-      nextBtn.removeClass("disable")
-    }
-    
-  })
-//	}, 1);
-}
-//displayList(1)
-
+	    if(currPageNo == lastPageNo){
+	      nextBtn.prop('disabled', true)
+	      nextBtn.addClass("disable")
+	    } else {
+	      nextBtn.prop('disabled', false)
+	      nextBtn.removeClass("disable")
+	    }
+	    
+	  })
+	}
 /************************************************/
 
 $(document.body).on('click', '.board', function(event){

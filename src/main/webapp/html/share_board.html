@@ -17,22 +17,14 @@
 	</div>
 	
 	<br><br>
+	<div id="share_container">
 	
-	<div class="board_table">
-		<table class="table table-bordered" id="share_table">
-		<thead>
-		<tr id="table_header">
-			<td>글 번호</td>
-			<td>제목</td>
-			<td>작성일</td>
-			<td>조회수</td>
-			<td>추천수</td>
-		</tr>
-		</thead>
-			<tbody>	
-			</tbody>
-	  	</table>
 	</div>
+
+	
+	<br><br>
+	
+
 	
 	
 	
@@ -79,38 +71,20 @@
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
 <script type="text/javascript" src="../js/share_board.js"></script>
 <script id="tbody-template" type="text/x-handlebars-template">
-  {{#each list}}
-	<table id="table_board">
-<colgroup>
-	<col width="4%">
-	<col width="*">
-	<col width="15%">
-	<col width="7%">
-	<col width="7%">
-</colgroup>
 
-   <tr class="board" id="board_tr" data-no ={{no}}>
-     <td style="border: 0px;">{{no}}</td>
-     <td style="border: 0px;">{{bw_titl}}</td>
-     <td style="border: 0px;">{{bw_wdt}}</td>
-     <td style="border: 0px;">{{bw_hits}}</td>
-	 <td style="border: 0px;">{{bw_like}}</td>
-   </tr>
-  {{/each}}
+  
+{{#each list}}
+	 <div class='all' data-no ={{no}}>
+	   <div class='img'><img id="home_img" src="{{bw_filepath}}"></div>
+	   <p>제목: {{bw_titl}}</p>
+	   <span>추천수: {{bw_like}}</span>
+	   <span>날짜: {{bw_wdt}}</span>
+	</div>
+{{/each}}
 
 
-  {{#each TogetherList}}
-          <div class="content_box" data-a="{{ctno}}" data-b="{{bkno}}">
-             <img src="{{BK_IMG}}"  style="cursor:pointer">
-             <div class = "text_box">
-               <div class="titl"  style="cursor:pointer">{{MBK_Titl}}</div>
-               <div class="date"  style="cursor:pointer">{{Ct_Date}}</div>
-               <div class="cont"  style="cursor:pointer">{{Ct_Dscp}}</div>
-               <div class="like"><div class="name">작성자: {{name}}</div><div class="heart{{ctno}} heart-box" data-no={{ctno}} onClick="like({{ctno}})"><a class="fa fa-heart-o heart" aria-hidden="true"></a><div class ="like_count like_count_no{{ctno}}">{{likeCount}}</div></div></div>
-             </div>
-          </div>
-    {{/each}}
 
+  
 
 </script>
 </body>
