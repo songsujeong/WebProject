@@ -12,3 +12,7 @@ $('#clickTest').click(function(){
 	      location.href = 'share_board.html'
 	    }, 'json')
 })
+
+$('#confirm').click(function(){
+	location.href = 'share_board.html'
+})

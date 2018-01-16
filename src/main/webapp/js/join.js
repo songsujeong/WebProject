@@ -24,10 +24,6 @@ $('#login_btn').on('click',function(e) {
 	// e.preventDefault();
 })
 
-$('#join_btn').on('click', function(e) {
-	location.href = 'join.html'
-})
-
 function enter(){
 	$.post('login2.json', {
 		'email': $('#login-email').val(),

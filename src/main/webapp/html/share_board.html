@@ -11,60 +11,24 @@
 
 <div id="header"></div>
 <div class="share_board_container">
-	<div class="share_btn_container">
-		<input type="search" placeholder="검색" id="keyword">
-		<button class="btn btn-default" id="add_btn">등록</button>
-	</div>
-	
-	<br><br>
-	<div id="share_container">
-	
-	</div>
+   <div class="share_board_index">
+      <button class="btn btn-default" id="add_btn">등록</button>
+      <div class="search_box">
+        <input type="search" placeholder="검색" id="keyword">
+      
+   </div>
+   <div class="house_container"id="share_container">
+      
+   </div>
+   
 
-	
-	<br><br>
-	
-
-	
-	
-	
+   
+   
+   </div>
 </div>
 
 
-<div class="bord-container_round">
 
-  <div class="bord-container">
-    <div id="com-titl-bord" class="bord-top">
-        <div class="bord-button">
-        <div id="board-position">
-          <div class="board_search">
-            <input type="search" placeholder="검색" id="keyword">
-          </div>
-          <div class="board_button">
-            <button class="btn" id="bord-btn">+새로운게시글</button>
-
-          </div>
-        </div>
-        </div>
-    </div>
-  </div>
-  <span class="btn btn-success fileinput-button">
-    <i class="glyphicon glyphicon-plus"></i>
-    <span>파일 선택...</span>
-    <input id="fileupload" type="file" name="files" multiple>
-</span>
-
-
-
-
-      <div class="page-btn">
-        <button type="button" class="btnForm" id="prev-btn">이전</button>
-        &nbsp;&nbsp;<span id="page-no">1</span>&nbsp;&nbsp;
-        <button type="button" class="btnForm" id="next-btn">다음</button>
-      </div>
-
-
-</div>
 
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -74,12 +38,14 @@
 
   
 {{#each list}}
-	 <div class='all' data-no ={{no}}>
-	   <div class='img'><img id="home_img" src="{{bw_filepath}}"></div>
-	   <p>제목: {{bw_titl}}</p>
-	   <span>추천수: {{bw_like}}</span>
-	   <span>날짜: {{bw_wdt}}</span>
-	</div>
+    <div class='all' data-no ={{no}}>
+      <div class='img'><img id="home_img" src="{{bw_filepath}}"></div>
+         <div class='soso'>
+         <p>제목: {{bw_titl}}</p>
+         <span>추천수: {{bw_like}}</span>
+         <span>날짜: {{bw_wdt}}</span>
+      </div>
+   </div>
 {{/each}}
 
 

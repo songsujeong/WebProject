@@ -1,0 +1,43 @@
+.join_container
+{
+   margin-top: 150px;
+}
+
+#join_name
+{
+   margin: 0 auto;
+    width: 400px;
+    height: 50px;
+}
+
+#join_email 
+{
+   margin: 0 auto;
+    width: 400px;
+    height: 50px;
+}
+
+#join_pwd
+{
+   margin: 0 auto;
+    width: 400px;
+    height: 50px;
+}
+
+#join_pwdConf
+{
+   margin: 0 auto;
+    width: 400px;
+    height: 50px;
+}
+
+.joinBtn_div
+{
+    margin: 0 auto;
+    width: 400px;
+}
+
+.joinBtn
+{
+    margin: 0 0 0 494px;
+}
