@@ -1,40 +1,46 @@
-.join_container
+.join-container
 {
    margin-top: 150px;
 }
 
-#join_name
+.input-container
+{
+	width: 600px;
+    margin: 0px auto;
+}
+
+#join-name
 {
    margin: 0 auto;
     width: 400px;
     height: 50px;
 }
 
-#join_email 
+#join-email 
 {
    margin: 0 auto;
     width: 400px;
     height: 50px;
 }
 
-#join_pwd
+#join-pwd
 {
    margin: 0 auto;
     width: 400px;
     height: 50px;
 }
 
-#join_pwdConf
+#join-pwdConf
 {
    margin: 0 auto;
     width: 400px;
     height: 50px;
 }
 
-.joinBtn_div
+.joinBtn-div
 {
-    margin: 0 auto;
-    width: 400px;
+    margin: 15px auto;
+    width: 374px;
 }
 
 .joinBtn

@@ -16,14 +16,13 @@ public class MemberControl {
   @Autowired ServletContext servletContext;
   @Autowired MemberService memberService;
   
-  @RequestMapping("add2")
-  public JsonResult add2(Member member) {
+  @RequestMapping("membAdd")
+  public JsonResult membAdd(Member member) {
 	  System.out.println("##############");
 	  JsonResult result = new JsonResult();
 	  
 	  try {
-		  System.out.println("try 들어왔거든?");
-		  memberService.add2(member);
+		  memberService.membAdd(member);
 		  System.out.println(" memberService.add2  메소드 실행끝");
 	  } catch (Exception e) {
 		  result.setStatus(JsonResult.ERROR);

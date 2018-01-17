@@ -2,43 +2,53 @@ $(document).ready(function(){
 	$("#header").load("header.html")
 })
 
+var fiName = $('#join-name'),
+    fiEmail = $('#join-email'),
+    fiPassword = $('#join-pwd'),
+	fiPasswordConf = $('#join-pwdConf');
 
-$('#login_btn').on('click',function(e) {
-	$.post('login2.json', {
-		'email': $('#login_email').val(),
-		'password': $('#login_pwd').val()
-		
+
+
+$('#join-btn').on('click',function(e) {
+	
+	if(fiName.val() == ''){
+		alert("이름을 입력하세요");
+	}
+	else if (fiEmail.val() == '') {
+		alert("이메일을 입력하세요");
+	}
+	else if (fiPassword.val() == '') {
+		alert("비밀번호를 입력하세요");
+	}
+	else if (fiPasswordConf.val() == '') {
+		alert("비밀번호를 확인하세요");
+	}
+	else if(fiPassword.val() != fiPasswordConf.val()){
+		alert("비밀번호가 다릅니다");
+	}
+	else if (fiPassword.val() == fiPasswordConf.val()) {
+	console.log('가입완료');	
+	$.post('membAdd.json', {
+		'name' : fiName.val(),
+		'email': fiEmail.val(),
+		'password': fiPassword.val(),
+		'posi':'user'
 	}, function(result) {
 		if(result.status=="success")
-		{
-			console.log("로그인성공..");
-			location.href = 'share_board.html'
-//				$('.login-link').css('display', 'none');
-//			$('.logout-link').css('display', 'block');
-
+		{console.log(result);
+			alert("가입이 완료되었습니다!")
+			location.href = 'login.html'
 			// e.preventDefault();
 		} else {
 			console.log(result.data)
 		}
 	}, 'json')
 	// e.preventDefault();
+	}
 })
 
-function enter(){
-	$.post('login2.json', {
-		'email': $('#login-email').val(),
-		'password': $('#login_pwd').val()
-	}, function(result) {
-		if(result.status=="success")
-		{
-			location.href = 'share_board.html'
-//				$('.login-link').css('display', 'none');
-//			$('.logout-link').css('display', 'block');
+$('#rtn-btn').on('click',function() {
+	location.href = 'login.html'
+})
 
-			// e.preventDefault();
-		} else {
-			console.log(result.data)
-		}
-	}, 'json')
-	// e.preventDefault();
-}	
+

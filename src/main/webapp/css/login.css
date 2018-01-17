@@ -1,23 +1,23 @@
-.login_container
+.login-container
 {
    margin-top: 150px;
 }
 
-#login_email 
+#login-email 
 {
    margin: 0 auto;
     width: 400px;
     height: 50px;
 }
 
-#login_pwd
+#login-pwd
 {
    margin: 0 auto;
     width: 400px;
     height: 50px;
 }
 
-.logBtn_div
+.logBtn-div
 {
     margin: 0 auto;
     width: 400px;
@@ -25,6 +25,5 @@
 
 .logBtn
 {
- 
     margin: 0 0 0 494px;
 }

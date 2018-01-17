@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
   
   
   
-  public void add2(Member member) throws Exception {
+  public void membAdd(Member member) throws Exception {
     memberDao.insert(member);
   }
 }

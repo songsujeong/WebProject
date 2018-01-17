@@ -20,8 +20,8 @@ public class AuthControl {
   @Autowired
   MemberService memberService;
 
-  @RequestMapping(path="login2", method=RequestMethod.POST)
-  public JsonResult login(String email, String password, String saveEmail, 
+  @RequestMapping(path="membLogin", method=RequestMethod.POST)
+  public JsonResult membLogin(String email, String password, String saveEmail, 
        HttpSession session) throws Exception {
     Member member = null;
     member = memberService.getByEmailPassword(email, password);
