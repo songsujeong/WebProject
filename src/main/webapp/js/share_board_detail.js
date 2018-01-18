@@ -11,22 +11,6 @@ mno,
 boardmno;
 
 var no = 0;
-
-
-
-
-$('#confirm').click(function(){
-	location.href = 'share_board.html'
-})
-
-$('#delete').click(function(){
-	alert("삭제하시겠습니까?")
- $.getJSON('delete.json', {'no': no}, function(result) {
-	 	alert("삭제되었습니다")
-		  location.href = 'share_board.html'
-	  })	
-})
-
 try {
 	no = location.href.split('?')[1].split('=')[1]
 } catch (err) {}
@@ -61,4 +45,47 @@ $.getJSON('detail.json', {'no': no}, function(result) {
        console.log(container)
        container.html(generatedHTML)
 
+})
+
+
+
+
+$('#confirm-btn').click(function(){
+	location.href = 'share_board.html'
+})
+
+$('#delete-btn').click(function(){
+	alert("삭제하시겠습니까?")
+ $.getJSON('delete.json', {'no': no}, function(result) {
+	 	alert("삭제되었습니다")
+		  location.href = 'share_board.html'
+	  })	
+})
+
+$("#cln-btn").click(function(){
+	location.href = 'share_board.html'
+})
+
+$('#update-btn').click(function() {
+		location.href = 'share_board_write.html?no=' + no
+  })
+
+
+
+
+
+$.getJSON('userinfo.json', function(result) {
+
+	if(result.data != null) {
+		mno = result.data.no;
+		console.log(result.data.no)
+		
+		if(mno != 1) {
+			$("#update-btn").css("display", "none")
+			$("#delete-btn").css("display", "none")
+			$("#cln-btn").css("display", "none")
+		} else {
+			$("#confirm-btn").css("display", "none")
+		}
+	}		
 })

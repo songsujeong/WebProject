@@ -18,7 +18,37 @@ $(document).ready(function(){
   $("body").on("click", ".selFile", removeFile);
 });
 
+/*$.getJSON('detail.json', {'no': no}, function(result) {
+	var data = result.data
+	title.text(data.bw_titl)
+	con.text(data.bw_con)
+	title.attr('data-no', data.no)
 
+	var newFileList = [] // 새롭게 파일을 네이밍 해줄 배열을 만든다.
+	for(var i = 0; i < data.fileList.length; i++) {
+	  // fileName 이라는 이름을 붙여서 파일 이름을 저장한다.
+	  // ex) fileList
+	  //        |->{fileName : 공.PNG}
+	  newFileList[i] = {fileName: data.fileList[i]}
+	}
+	
+	// 기존의 data아래의 fileList 에 새로 만든 배열값을 넣어준다.
+	data.fileList = newFileList
+	
+	// 네이밍된 데이터 값을 확인할 수 있다.
+	console.log(data.fileList)
+	
+    // 템플릿 소스를 가지고 템플릿을 처리할 함수를 얻는다.
+	
+	var templateFn = Handlebars.compile($('#detail-template').text())
+     var generatedHTML = templateFn(result.data)
+     console.log(result.data)
+     var container = $('#fileList') 
+       container.text('')
+       console.log(container)
+       container.html(generatedHTML)
+
+})*/
 
 /*$('#add').on('click', function(e){
 	$.post('boardAdd.json', {
@@ -136,45 +166,41 @@ $('#img_upload').fileupload({
 });
 
 
+$.getJSON('detail.json', {'no': no}, function(result) {
+	  var data = result.data
+	  if(no != 0){
+		  $('#conupdatebtn').css("display","block")
+		  $('#addbtn').css("display","none")
+		  $('#conaddbtn').css("display", "none")
+	  }
+	  console.log(data)
+		  
+	  Titl.val(data.bw_titl)
+    Con.text(data.bw_con)
+	  })
+  $('#updatebtn').css("display","none")
+  $('#conupdatebtn').css("display","none")
+  
+
+
+$('#conupdatebtn').on('click',function() {
+	  
+	  $.post('conUpdate.json', {
+		  'bw_titl': Titl.val(),
+		  'bw_con': Con.val(),
+		  'no': no,
+		  'bw_div': Div
+	  }, function(result) {
+		  location.href = 'board.html'
+	  }, 'json')
+
+});
 
 
 
 
-//$('#img_upload').fileupload({
-//url: '/html/boardAdd.json',        // 서버에 요청할 URL
-//dataType: 'json',         // 서버가 보낸 응답이 JSON임을 지정하기
-//sequentialUploads: true,  // 여러 개의 파일을 업로드 할 때 순서대로 요청하기.
-//singleFileUploads: false, // 한 요청에 여러 개의 파일을 전송시키기.
 
-//add: function(e, data) {
-//console.log('add()...');
-//console.log(data.files);
-//var imagesDiv = $('.inputfiles');
-//imagesDiv.html("");
-//try {
-//if (data.files[0].preview.toDataURL) {
-//$("<img>").attr('src', data.files[0].preview.toDataURL()).css('width', '332.72px').appendTo(imagesDiv);
-//}
-//} catch (err) {}
-//$('#add').click(function() {
-//data.submit();
-//});
-//},
-//submit: function (e, data) { // 서버에 전송하기 직전에 호출된다.
-//data.formData = {
-//'mno' : mno,
-//'bw_titl': Titl.val(),
-//'bw_con': Con.val(),
-//'bw_div': Div
-//}
-//console.log('submit()...');
-//},
-//done: function (e, data) { // 서버에서 응답이 오면 호출된다. 각 파일 별로 호출된다.
-//console.log(data.result);
-//location.href = 'share_board.html'
-//}
 
-//});
 
 $('#cln').on('click', function(e){
   location.href = 'share_board.html'

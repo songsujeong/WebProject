@@ -87,6 +87,12 @@ $('#logout-btn').on('click', function() {
 	})	
 })
 
+$('#login-btn').click(function() {
+	location.href = 'login.html'
+})
+$('#join-btn').click(function() {
+	location.href = 'join.html'
+})
 
 
 $.getJSON('userinfo.json', function(result) {
