@@ -18,7 +18,6 @@ public class MemberControl {
   
   @RequestMapping("membAdd")
   public JsonResult membAdd(Member member) {
-	  System.out.println("##############");
 	  JsonResult result = new JsonResult();
 	  
 	  try {

@@ -19,26 +19,13 @@ $('#confirm').click(function(){
 	location.href = 'share_board.html'
 })
 
-/*function displayList(pageNo, pageSize) {
-	// 서버에서 강사 목록 데이터를 받아 온다.
-  $.getJSON('list.json', {'pageNo':pageNo, 'pageSize': pageSize}, function(result) {
-	var totalCount = result.data.totalCount;
-	var lastPageNo = parseInt(totalCount / pageSize) + (totalCount % pageSize > 0 ? 1 : 0)
-    // 템플릿 소스를 가지고 템플릿을 처리할 함수를 얻는다.
-    var templateFn = Handlebars.compile($('#file-template').text())
-    var generatedHTML = templateFn(result.data)
-		console.log(">>>>>>>>>>>"+result.data)
-		var fileList = $('#fileList') 
-		fileList.text('')
-		fileList.html(generatedHTML)  // 문자열 html을 리턴한다.
-    
-    
-    currPageNo = pageNo
-    pageNoTag.text(currPageNo)
-
-  }) // getJSON()
-} // displayList()
-*/
+$('#delete').click(function(){
+	alert("삭제하시겠습니까?")
+ $.getJSON('delete.json', {'no': no}, function(result) {
+	 	alert("삭제되었습니다")
+		  location.href = 'share_board.html'
+	  })	
+})
 
 try {
 	no = location.href.split('?')[1].split('=')[1]
@@ -48,19 +35,30 @@ $.getJSON('detail.json', {'no': no}, function(result) {
 	var data = result.data
 	title.text(data.bw_titl)
 	con.text(data.bw_con)
+	title.attr('data-no', data.no)
 
-	console.log("이거", data)
+	var newFileList = [] // 새롭게 파일을 네이밍 해줄 배열을 만든다.
+	for(var i = 0; i < data.fileList.length; i++) {
+	  // fileName 이라는 이름을 붙여서 파일 이름을 저장한다.
+	  // ex) fileList
+	  //        |->{fileName : 공.PNG}
+	  newFileList[i] = {fileName: data.fileList[i]}
+	}
+	
+	// 기존의 data아래의 fileList 에 새로 만든 배열값을 넣어준다.
+	data.fileList = newFileList
+	
+	// 네이밍된 데이터 값을 확인할 수 있다.
+	console.log(data.fileList)
 	
     // 템플릿 소스를 가지고 템플릿을 처리할 함수를 얻는다.
 	
 	var templateFn = Handlebars.compile($('#detail-template').text())
-     var generatedHTML = templateFn(result.data.list)
-     console.log(result.data.list)
+     var generatedHTML = templateFn(result.data)
+     console.log(result.data)
      var container = $('#fileList') 
        container.text('')
+       console.log(container)
        container.html(generatedHTML)
-	
-
 
 })
-

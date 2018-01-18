@@ -66,36 +66,6 @@ $(document.body).on('click', '#home-img', function(event){
 })
 
 /*****************************************************/
-$('#bord-btn').click(function(){
-	if (mno != null) {
-		location.href = 'boardwrite.html'
-	} else {
-		swal({
-			title: "로그인이 필요합니다",
-			text: "서비스를 이용하시려면 로그인이 필요합니다.",
-			confirmButtonText: "확인",
-			confirmButtonColor: "#6384E1",
-			html: true
-		}, function(isConfirm){
-			console.log("isConfirm!!!!!1",isConfirm)
-			if(isConfirm == true){
-				location.href = "board.html"
-			}
-		})
-
-	}
-})
-
-
-
-
-
-
-
-
-
-/******************************************************/
-
 
 
 prevBtn.click(function() {
@@ -106,14 +76,16 @@ nextBtn.click(function() {
 	displayList(currPageNo + 1)
 })
 
-$(function(){
-	if(mno == null )
-		{
-		
+$('#logout-btn').on('click', function() {
+	$.getJSON('logout.json', function (result) {
+		if (result.status != 'fail') {
+			console.log(result)
+			$('#login-btn').css('display', 'block');
+			$('#logout-btn').css('display', 'none');
+			$('#join-btn').css('display', 'block');
 		}
+	})	
 })
-
-
 
 
 
@@ -121,27 +93,12 @@ $.getJSON('userinfo.json', function(result) {
 
 	if(result.data != null) {
 		mno = result.data.no;
+		console.log(result.data.no)
 		$("#login-btn").css("display", "none")
+		$("#join-btn").css("display", "none")
+		
+		if(mno != 1) {
+			$("#add-btn").css("display", "none")
+		}
 	}		
-
 })
-
-
-
-
-//
-//$.('#home_img').click(function() {
-//	console.log(this)
-////	no =
-////	$.getJSON('detail.json', {'no': no}, function(result) {
-////	    var data = result.data
-////	    creater.text(data.name)
-////	    title.text(data.bw_titl)
-////	    con.text(data.bw_con)
-////	    wdt.text(data.bw_wdt)
-////	    filePath.attr("src", data.filePath)
-////	    boardmno = data.mno
-////	    console.log("이거", data)
-////	    
-////	})
-//})

@@ -46,21 +46,6 @@ public class BoardControl {
   }
   
 
-  
-/*  @RequestMapping(path="boardAdd")
-  public JsonResult fileupload(Board board, MultipartFile[] files) throws Exception {
-  	  System.out.println(files.length);
-      files[0].transferTo(new File(servletContext.getRealPath("/upload/" + files[0].getOriginalFilename())));
-      
-      board.setBw_filepath("/upload/" + files[0].getOriginalFilename());
-     
-      boardService.boardAdd(board);
-      
-    System.out.println("BoardControl"+board);
-    return new JsonResult(JsonResult.SUCCESS, "ok");
-  }*/
-  
-  
   @RequestMapping(path="boardAdd")
   public JsonResult fileupload(Board board, MultipartFile[] files) throws Exception {
     System.out.println(board);
@@ -107,7 +92,7 @@ public class BoardControl {
   
   
 //  /*************************************************/
-  @RequestMapping("suchList")
+/*  @RequestMapping("suchList")
   public JsonResult suchList(
       @RequestParam Map<String, String> keyword) throws Exception {
     
@@ -117,7 +102,7 @@ public class BoardControl {
     
     
     return new JsonResult(JsonResult.SUCCESS, dataMap);
-  }
+  }*/
 //  /*************************************************/
   
   
@@ -138,19 +123,6 @@ public class BoardControl {
     return new JsonResult(JsonResult.SUCCESS, "ok");
   } 
   
-  
-  @RequestMapping("conUpdate")
-  public JsonResult conUpdate(Board board) throws Exception {
-    boardService.conUpdate(board);
-    return new JsonResult(JsonResult.SUCCESS, "ok");
-  }
-  
-  @RequestMapping("hitsUpdate")
-  public JsonResult conUpdate(int bwno) throws Exception {
-    boardService.hitsUpdate(bwno);
-    return new JsonResult(JsonResult.SUCCESS, "ok");
-  }
-
 
 }
 

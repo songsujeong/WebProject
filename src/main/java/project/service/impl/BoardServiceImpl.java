@@ -43,13 +43,6 @@ public class BoardServiceImpl implements BoardService {
 
 
   @Override
-  public List<Board> suchList(Map<String, String> keyword) throws Exception {
-    return boardDao.selectListByTitle(keyword);
-  }
-
-
-
-  @Override
   public int getSize() throws Exception {
     return boardDao.countAll();
   }
@@ -63,6 +56,7 @@ public class BoardServiceImpl implements BoardService {
   public Board get(int no) throws Exception {
     return boardDao.selectOne(no);
   }
+  
   public void remove(int no) throws Exception {
     int count = boardDao.delete(no);
     if (count < 1) {
@@ -74,21 +68,13 @@ public class BoardServiceImpl implements BoardService {
     } catch (Exception e) {}
   }
 
-
-
+  
   public void conUpdate(Board board) throws Exception {
     int count = boardDao.contextUpdate(board);
     if (count < 1) {
       throw new Exception(board.getNo() + "번 강사를 찾을 수 없습니다.");
     }
   }
-
-  @Override
-  public int hitsUpdate(int bwno) throws Exception {
-    int count = boardDao.hitsUpdate(bwno);
-    return count;
-  }
-
 
 }
 
