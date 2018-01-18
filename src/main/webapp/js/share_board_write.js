@@ -16,39 +16,40 @@ $(document).ready(function(){
   selDiv = $(".selectedFiles");
 
   $("body").on("click", ".selFile", removeFile);
+  $.getJSON('detail.json', {'no': no}, function(result) {
+		var data = result.data
+		title.text(data.bw_titl)
+		con.text(data.bw_con)
+		/*title.attr('data-no', data.no)
+
+		var newFileList = [] // 새롭게 파일을 네이밍 해줄 배열을 만든다.
+		for(var i = 0; i < data.fileList.length; i++) {
+		  // fileName 이라는 이름을 붙여서 파일 이름을 저장한다.
+		  // ex) fileList
+		  //        |->{fileName : 공.PNG}
+		  newFileList[i] = {fileName: data.fileList[i]}
+		}
+		
+		// 기존의 data아래의 fileList 에 새로 만든 배열값을 넣어준다.
+		data.fileList = newFileList
+		
+		// 네이밍된 데이터 값을 확인할 수 있다.
+		console.log(data.fileList)
+		
+	    // 템플릿 소스를 가지고 템플릿을 처리할 함수를 얻는다.
+		
+		var templateFn = Handlebars.compile($('#detail-template').text())
+	     var generatedHTML = templateFn(result.data)
+	     console.log(result.data)
+	     var container = $('#fileList') 
+	       container.text('')
+	       console.log(container)
+	       container.html(generatedHTML)
+	*/
+	})
 });
 
-/*$.getJSON('detail.json', {'no': no}, function(result) {
-	var data = result.data
-	title.text(data.bw_titl)
-	con.text(data.bw_con)
-	title.attr('data-no', data.no)
 
-	var newFileList = [] // 새롭게 파일을 네이밍 해줄 배열을 만든다.
-	for(var i = 0; i < data.fileList.length; i++) {
-	  // fileName 이라는 이름을 붙여서 파일 이름을 저장한다.
-	  // ex) fileList
-	  //        |->{fileName : 공.PNG}
-	  newFileList[i] = {fileName: data.fileList[i]}
-	}
-	
-	// 기존의 data아래의 fileList 에 새로 만든 배열값을 넣어준다.
-	data.fileList = newFileList
-	
-	// 네이밍된 데이터 값을 확인할 수 있다.
-	console.log(data.fileList)
-	
-    // 템플릿 소스를 가지고 템플릿을 처리할 함수를 얻는다.
-	
-	var templateFn = Handlebars.compile($('#detail-template').text())
-     var generatedHTML = templateFn(result.data)
-     console.log(result.data)
-     var container = $('#fileList') 
-       container.text('')
-       console.log(container)
-       container.html(generatedHTML)
-
-})*/
 
 /*$('#add').on('click', function(e){
 	$.post('boardAdd.json', {

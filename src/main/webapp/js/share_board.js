@@ -60,10 +60,7 @@ function displayList(pageNo){
 }
 /************************************************/
 
-$(document.body).on('click', '#home-img', function(event){
-	location.href = 'share_board_detail.html?no=' + $(this).parent().parent().attr('data-no')
-	event.preventDefault()
-})
+
 
 /*****************************************************/
 
@@ -103,8 +100,17 @@ $.getJSON('userinfo.json', function(result) {
 		$("#login-btn").css("display", "none")
 		$("#join-btn").css("display", "none")
 		
+		$('#home-img').on('click', function(){
+			if(mno == null) {
+				location.href = 'share_board_detail.html?no=' + $(this).parent().parent().attr('data-no')
+			} else {
+				alert("로그인이 필요합니다.")
+			}
+		})
 		if(mno != 1) {
 			$("#add-btn").css("display", "none")
 		}
+	} else {
+		$("#logout-btn").css("display", "none")
 	}		
 })
