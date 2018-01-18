@@ -12,7 +12,7 @@ pageSize = 10;
 var mno;
 
 
-$('#add_btn').on('click', function(e){
+$('#add-btn').on('click', function(e){
 	location.href = 'share_board_write.html'
 })
 
@@ -32,8 +32,8 @@ function displayList(pageNo){
 
 		var templateFn = Handlebars.compile($('#tbody-template').text())
 		var generatedHTML = templateFn(result.data)
-		console.log(result.data)
-		var container = $('#share_container') 
+		console.log(">>>>>>>>>>>"+result.data)
+		var container = $('#share-container') 
 		container.text('')
 		container.html(generatedHTML)  // 문자열 html을 리턴한다.
 
@@ -60,7 +60,7 @@ function displayList(pageNo){
 }
 /************************************************/
 
-$(document.body).on('click', '#home_img', function(event){
+$(document.body).on('click', '#home-img', function(event){
 	location.href = 'share_board_detail.html?no=' + $(this).parent().parent().attr('data-no')
 	event.preventDefault()
 })
@@ -106,6 +106,13 @@ nextBtn.click(function() {
 	displayList(currPageNo + 1)
 })
 
+$(function(){
+	if(mno == null )
+		{
+		
+		}
+})
+
 
 
 
@@ -114,9 +121,12 @@ $.getJSON('userinfo.json', function(result) {
 
 	if(result.data != null) {
 		mno = result.data.no;
+		$("#login-btn").css("display", "none")
 	}		
 
 })
+
+
 
 
 //

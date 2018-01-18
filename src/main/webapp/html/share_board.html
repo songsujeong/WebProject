@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,51 +9,51 @@
 </head>
 <body>
 
-
 <div id="header"></div>
-<div class="share_board_container">
-   <div class="share_board_index">
-      <button class="btn btn-default" id="add_btn">등록</button>
-      <div class="search_box">
-        <input type="search" placeholder="검색" id="keyword">
-      
-   </div>
-   <div class="house_container"id="share_container">
-      
-   </div>
-   
+<div class="share-board-container">
+   <div class="share-board-index">
+      <button class="btn btn-default" id="add-btn">등록</button>
+    <div class="search-box">
+      <div class="field">
+       <span class="house-select-titl">하우스 찾기</span>
+       <input class="text-input"type="search" placeholder="ex) 00역 / 00대학교" id="keyword">
+      </div>
 
-   
-   
+      <div class="field2">
+       <button class="btn btn-default" id="login-btn">로그인</button>
+       <button class="btn btn-default" id="logout-btn">로그아웃</button>
+       <button class="btn btn-default" id="join-btn">회원가입</button>
+
+       <!-- <button class="btn btn-default" id="logout_btn">회원가입</button> -->
+      </div>
    </div>
+   <div class="house-div"></div>
+   <div class="house-view">하우스 보기</div>
+   
+   <div class="house-container"id="share-container">
+  </div>
+ </div>
 </div>
 
 
-
-
-<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
 <script type="text/javascript" src="../js/share_board.js"></script>
-<script id="tbody-template" type="text/x-handlebars-template">
 
-  
+<script id="tbody-template" type="text/x-handlebars-template">
 {{#each list}}
     <div class='all' data-no ={{no}}>
-      <div class='img'><img id="home_img" src="{{bw_filepath}}"></div>
-         <div class='soso'>
-         <p>제목: {{bw_titl}}</p>
-         <span>추천수: {{bw_like}}</span>
-         <span>날짜: {{bw_wdt}}</span>
-      </div>
+      <div class='img'><img id="home-img" src="/upload/{{fileList}}_190.png"></div>
+       <div class='infomation'>
+       <p>{{bw_titl}}</p>
+	   <span class="date">날짜 {{bw_wdt}}</span>
+       <span class="like_people">추천 {{bw_like}}</span>
+	</div>
    </div>
 {{/each}}
 
 
-
-  
-
 </script>
 </body>
-
 </html>

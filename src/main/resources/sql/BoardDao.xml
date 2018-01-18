@@ -16,26 +16,34 @@
     <result column="bw_hits" property="bw_hits"/>
     <result column="bw_div" property="bw_div"/>
     <result column="bw_filepath" property="bw_filepath"/>
+	<collection property="fileList" ofType="string">
+       <result column="filename"/>
+    </collection>
   </resultMap>
 
   
   
+   <insert id="insertImg" parameterType="map">
+    insert into boardfile(bwno, filename, titlepic)
+    values( #{no}, #{img}, #{title}) 
+  </insert>
   
-  <insert id="contextInsert">
-    insert into boardwrite(mno, bw_titl, bw_con, bw_wdt, bw_div, bw_filepath) 
-    values(#{mno}, #{bw_titl}, #{bw_con}, curdate(), #{bw_div}, #{bw_filepath})
+  <insert id="contextInsert" parameterType="board" useGeneratedKeys="true" keyColumn="bwno" keyProperty="no">
+    insert into boardwrite(mno, bw_titl, bw_con, bw_wdt, bw_div) 
+    values(#{mno}, #{bw_titl}, #{bw_con}, curdate(), #{bw_div})
   </insert>
   
    <select id="selectList" resultMap="boardMap" parameterType="map">
-    select bw.bwno, bw.bw_titl, bw.bw_con, bw.bw_wdt, m.name,bw.bw_div, bw.bw_filepath
+    select bw.bwno, bw.bw_titl, bw.bw_con, bw.bw_wdt, m.name, bw.bw_div, bf.filename
     from boardwrite bw inner join member m on bw.mno = m.mno
-    where bw_div = 'board' 
+                   		 left outer join boardfile bf on bw.bwno = bf.bwno
+    where bw_div = 'board' and bf.titlepic = 1
     order by bwno desc
     limit #{startIndex}, #{pageSize}
   </select>
   
   <select id="selectOne" resultMap="boardMap" parameterType="int">
-    select  m.name, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bwno , bw.bw_filepath, bf.filepath, bf.filename, m.mno
+    select  m.name, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bwno, bf.filename, m.mno
     from boardwrite bw inner join member m on bw.mno = m.mno
                        left outer join boardfile bf on bw.bwno = bf.bwno
     where bw.bwno= #{no}

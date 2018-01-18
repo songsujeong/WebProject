@@ -2,12 +2,11 @@ $(document).ready(function(){
 	$("#header").load("header.html")
 })
 
-var tbody = $('.box-form'),
-title=$('#bw_titl'),
+var title=$('#titl'),
 creater=$('#name'),
-con=$('#bw_con'),
+con=$('#con'),
 wdt=$('#bw_wdt'),
-bw_filepath = $('#bw_filepath'),
+fileList = $('#fileList'),
 mno,
 boardmno;
 
@@ -20,6 +19,26 @@ $('#confirm').click(function(){
 	location.href = 'share_board.html'
 })
 
+/*function displayList(pageNo, pageSize) {
+	// 서버에서 강사 목록 데이터를 받아 온다.
+  $.getJSON('list.json', {'pageNo':pageNo, 'pageSize': pageSize}, function(result) {
+	var totalCount = result.data.totalCount;
+	var lastPageNo = parseInt(totalCount / pageSize) + (totalCount % pageSize > 0 ? 1 : 0)
+    // 템플릿 소스를 가지고 템플릿을 처리할 함수를 얻는다.
+    var templateFn = Handlebars.compile($('#file-template').text())
+    var generatedHTML = templateFn(result.data)
+		console.log(">>>>>>>>>>>"+result.data)
+		var fileList = $('#fileList') 
+		fileList.text('')
+		fileList.html(generatedHTML)  // 문자열 html을 리턴한다.
+    
+    
+    currPageNo = pageNo
+    pageNoTag.text(currPageNo)
+
+  }) // getJSON()
+} // displayList()
+*/
 
 try {
 	no = location.href.split('?')[1].split('=')[1]
@@ -27,13 +46,21 @@ try {
 
 $.getJSON('detail.json', {'no': no}, function(result) {
 	var data = result.data
-	creater.text(data.name)
 	title.text(data.bw_titl)
 	con.text(data.bw_con)
-	wdt.text(data.bw_wdt)
-	filePath.attr("src", data.filePath)
-	boardmno = data.mno
+
 	console.log("이거", data)
+	
+    // 템플릿 소스를 가지고 템플릿을 처리할 함수를 얻는다.
+	
+	var templateFn = Handlebars.compile($('#detail-template').text())
+     var generatedHTML = templateFn(result.data.list)
+     console.log(result.data.list)
+     var container = $('#fileList') 
+       container.text('')
+       container.html(generatedHTML)
+	
+
 
 })
 

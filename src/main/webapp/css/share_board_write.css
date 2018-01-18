@@ -4,3 +4,29 @@
 	width: 1000px;
 	margin: 100px auto;
 }
+
+.title_img
+{
+	width: 320px;
+    height: 200px;
+}
+
+.ShareImgAdd
+{
+	float: left;
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 320px;
+    height: 200px;
+}
+
+.btn-container
+{
+	margin-left: 888px;
+}
+
+#bw_con
+{
+	resize: none;
+	height: 300px
+}

@@ -30,15 +30,6 @@ public class AuthControl {
     if (member != null) { 
     	System.out.println("control들어옴");
       session.setAttribute("loginMember", member);
-//      if (saveEmail != null) {
-//          Cookie cookie2 = new Cookie("email", email);
-//          cookie2.setMaxAge(60 * 60 * 24 * 7); 
-//          response.addCookie(cookie2);
-//        } else {
-//          Cookie cookie2 = new Cookie("email", "");
-//          cookie2.setMaxAge(0);
-//          response.addCookie(cookie2);
-//        }
       
       return new JsonResult(JsonResult.SUCCESS, "ok");
       

@@ -10,13 +10,12 @@
     <result column="email" property="email"/>
     <result column="name" property="name"/>
     <result column="pass" property="password"/>
-    <result column="tel" property="tel"/>
     <result column="posi" property="posi"/>
   </resultMap>
 
   <insert id="insert" parameterType="member">
-    insert into member(email,name,pass,tel,posi) 
-    values(#{email},#{name},password(#{password}),#{tel},#{posi})
+    insert into member(email,name,pass,posi) 
+    values(#{email},#{name},password(#{password}),#{posi})
   </insert>
   
   <select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">

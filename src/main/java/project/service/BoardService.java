@@ -6,7 +6,7 @@ import java.util.Map;
 import project.domain.Board;
 
 public interface BoardService {
-  void boardAdd(Board board) throws Exception;
+  void boardAdd(Board board, int titleNo) throws Exception;
   List<Board> list(int pageNo, int pageSize) throws Exception;
   List<Board> suchList(Map<String, String> keyword) throws Exception;
   int getSize() throws Exception;

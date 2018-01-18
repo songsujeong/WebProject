@@ -1,6 +1,7 @@
 package project.control.json;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.coobird.thumbnailator.Thumbnails;
 import project.control.json.JsonResult;
 import project.domain.Board;
 import project.service.BoardService;
@@ -43,7 +45,9 @@ public class BoardControl {
     return new JsonResult(JsonResult.SUCCESS, dataMap);
   }
   
-  @RequestMapping(path="boardAdd")
+
+  
+/*  @RequestMapping(path="boardAdd")
   public JsonResult fileupload(Board board, MultipartFile[] files) throws Exception {
   	  System.out.println(files.length);
       files[0].transferTo(new File(servletContext.getRealPath("/upload/" + files[0].getOriginalFilename())));
@@ -52,7 +56,48 @@ public class BoardControl {
      
       boardService.boardAdd(board);
       
+    System.out.println("BoardControl"+board);
+    return new JsonResult(JsonResult.SUCCESS, "ok");
+  }*/
+  
+  
+  @RequestMapping(path="boardAdd")
+  public JsonResult fileupload(Board board, MultipartFile[] files) throws Exception {
     System.out.println(board);
+    String titleName = board.getTitlePic();
+    int titleNo=0;
+    
+    
+    ArrayList<String> fileList = new ArrayList<>();
+    
+    for (int i = 0; i < files.length; i++) {
+        if (files[i].isEmpty()) 
+          continue;
+        
+        File file = new File(servletContext.getRealPath("/upload/" + files[i].getOriginalFilename()));
+        System.out.println(servletContext.getRealPath("/upload/" + files[i].getOriginalFilename()));
+        files[i].transferTo(file);
+        
+        System.out.println(files[i]);
+        File thumbnail = new File(servletContext.getRealPath("/upload/" +  files[i].getOriginalFilename() + "_190"));
+        Thumbnails.of(file).size(190, 150).outputFormat("png").toFile(thumbnail);
+        thumbnail = new File(servletContext.getRealPath("/upload/" +  files[i].getOriginalFilename() + "_414"));
+        Thumbnails.of(file).size(414, 350).outputFormat("png").toFile(thumbnail);
+        
+        fileList.add( files[i].getOriginalFilename());
+      }
+    if (titleName != null) {
+      for (int i = 0; i < files.length; i++) {
+        if (files[i].getOriginalFilename().equals(titleName))
+          titleNo = i;
+      }
+    }
+    board.setFileList(fileList);
+    boardService.boardAdd(board, titleNo);
+    
+    System.out.println("fileList>>>>>>>>>"+fileList);
+    System.out.println("board>>"+board);
+    System.out.println("titleNo>>"+titleNo);
     return new JsonResult(JsonResult.SUCCESS, "ok");
   }
   
@@ -75,15 +120,18 @@ public class BoardControl {
   }
 //  /*************************************************/
   
-//  
-//  @RequestMapping("detail")
-//  public JsonResult detail(int no) throws Exception {
-//    Board board = boardService.get(no);
-//    if (board == null) {
-//      return new JsonResult(JsonResult.FAIL, no + "번 게시글이 없습니다.");
-//    }
-//    return new JsonResult(JsonResult.SUCCESS, board);
-//  }
+  
+  @RequestMapping("detail")
+  public JsonResult detail(int no) throws Exception {
+    Board board = boardService.get(no);
+    if (board == null) {
+      return new JsonResult(JsonResult.FAIL, no + "번 게시글이 없습니다.");
+    }
+    return new JsonResult(JsonResult.SUCCESS, board);
+  }
+  
+  
+  
   @RequestMapping("delete")
   public JsonResult delete(int no) throws Exception {
     boardService.remove(no);

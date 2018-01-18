@@ -1,5 +1,6 @@
 package project.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,5 +16,5 @@ public interface BoardDao {
   int delete(int no);
   int contextUpdate(Board board);
   int hitsUpdate(int bwno);
-  
+  int insertImg(HashMap<String, Object> valueMap);
 }
