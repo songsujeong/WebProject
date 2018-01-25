@@ -29,6 +29,7 @@ public class AuthCheckFilter implements Filter {
 
 	     Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
 	     if (loginMember == null) { // 쿠키에 세션 아이디가 없다면
+	    	 System.out.println(">>>>>>>>>>>>>>.로그아웃");
 	       httpResponse.sendRedirect("../html/login.html"); // 로그인 화면으로 보낸다.
 	      return;
 	     }

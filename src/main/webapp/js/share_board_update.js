@@ -123,11 +123,7 @@ function removeFile(e) {
 }
 
 
-var index_pic; // 1 =  업로드 안했지만 전타이틀 사진과 같을 때
-//2 = 업로드 안했지만 타이틀이 바뀜
-//3 = 새로 업로드된 사진이 타이틀 사진일때
-//4 = 새로 업로드 됬지만 전타이틀 사진과 같을때
-//5 = 새로 업로드 됬지만 전타이틀 사진과 다르고, 전에 올린사진 중에 하나가 타이틀 일때.
+var index_pic; 
 
 $('#img_upload').fileupload({
   traditional : true,
@@ -145,11 +141,7 @@ $('#img_upload').fileupload({
       console.log('Added file: ' + file.name);
     });
 
-    // 1 =  업로드 안했지만 전타이틀 사진과 같을 때
-    // 2 = 업로드 안했지만 타이틀이 바뀜
-    // 3 = 새로 업로드된 사진이 타이틀 사진일때
-    // 4 = 새로 업로드 됬지만 전의 사진이 타이틀 일때
-    // 5 = 새로 업로드 됬지만 전타이틀 사진과 다르고, 전에 올린사진 중에 하나가 타이틀 일때.
+
     $('#update-btn').click(function() {
       console.log("2")
       if(count != 0){

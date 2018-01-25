@@ -20,6 +20,7 @@ public class AuthControl {
 	@Autowired
 	private MemberService memberService;
 
+	//로그인
 	@RequestMapping(path="membLogin", method=RequestMethod.POST)
 	public JsonResult membLogin(String email, String password, 
 			HttpSession session) throws Exception {
@@ -37,9 +38,8 @@ public class AuthControl {
 			return new JsonResult(JsonResult.FAIL, "fail");
 		}
 	}
-	
-	
 
+	//로그아웃
 	@RequestMapping("logout")
 	public JsonResult logout(HttpSession session, SessionStatus status) throws Exception {
 		status.setComplete();
@@ -47,6 +47,7 @@ public class AuthControl {
 		return new JsonResult(JsonResult.SUCCESS, "ok");
 	}
 
+	//로그인 후 사용자정보
 	@RequestMapping("userinfo")
 	public JsonResult userinfo(HttpSession session) throws Exception {
 		Member loginMember = (Member)session.getAttribute("loginMember");

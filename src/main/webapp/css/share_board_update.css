@@ -28,6 +28,7 @@
 }
 #titl
 {
+	overflow: hidden;
 	resize: none;
     height: 34px;
 }

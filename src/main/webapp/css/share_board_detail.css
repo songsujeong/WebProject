@@ -4,7 +4,10 @@
 	width: 1000px;
 	margin: 100px auto;
 }
-
+#titl
+{
+	overflow: hidden;
+}
 #con
 {
 	witdh :100%;
@@ -35,7 +38,7 @@
 
 .btn-container
 {
-	margin-left: 805px;
+	margin-left: 914px;
     width: 1000px;
 }
 
@@ -49,4 +52,8 @@
   right: 3%;
   top: 3%;
   font-size: 16px;
+}
+#update-btn, #delete-btn, #confirm-btn
+{
+    float: left;
 }

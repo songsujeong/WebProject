@@ -16,6 +16,7 @@ public class MemberControl {
   @Autowired ServletContext servletContext;
   @Autowired MemberService memberService;
   
+  //회원가입
   @RequestMapping("membAdd")
   public JsonResult membAdd(Member member) {
 	  JsonResult result = new JsonResult();

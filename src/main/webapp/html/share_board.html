@@ -3,56 +3,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>쉐어하우스</title>
 <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/share_board.css">
-</head>
-<body>
-
-<div id="header"></div>
-<div class="share-board-container">
-   <div class="share-board-index">
-  
-      <button class="btn btn-default" id="add-btn">등록</button>
-    <div class="search-box">
-      <div class="field">
-       <span class="house-select-titl">검색</span>
-       <input class="text-input"type="search" placeholder="ex) 00역 / 00대학교" id="keyword">
-      </div>
-
-      <span class="field2">
-       <button class="btn btn-default" id="login-btn">로그인</button>
-       <button class="btn btn-default" id="join-btn">회원가입</button>
-       <button class="btn btn-default" id="logout-btn">로그아웃</button>
-      </span>
-       <div class="login-yn">※로그인 후 이용이 가능합니다※</div>
-   </div>
-   <div class="house-div"></div>
-   <div class="house-view"></div>
-   
-   <div class="house-container"id="share-container">
-  </div>
- </div>
-</div>
-
-
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
-<script type="text/javascript" src="../js/share_board.js"></script>
-
-<script id="tbody-template" type="text/x-handlebars-template">
-{{#each list}}
-    <div class='all' data-no ={{no}}>
-      <div class='img'><img id="home-img" src="/upload/{{fileList}}_414.png"></div>
-       <div class='infomation'>
-       <p>{{bw_titl}}</p>
-	   <span class="date">날짜 {{bw_wdt}}</span>
+<script src="../js/share_board.js"></script>
+</head>
+<body>
+	<div id="header"></div>
+	
+	<div class="share-board-container">
+		<div class="share-board-index">
+			<button class="btn btn-default" id="add-btn">등록</button>
+			<div class="search-box">
+				<div class="field">
+					<span class="house-select-titl">검색</span> <input class="text-input" type="search" placeholder="ex) 00역 / 00대학교" id="keyword">
+				</div>
+				<span class="field2">
+					<button class="btn btn-default" id="login-btn">로그인</button>
+					<button class="btn btn-default" id="join-btn">회원가입</button>
+					<button class="btn btn-default" id="logout-btn">로그아웃</button>
+				</span>
+				<div class="login-yn">※로그인 후 이용이 가능합니다※</div>
+			</div>
+			<div class="house-div"></div>
+			<div class="house-view"></div>
+			<div class="house-container" id="share-container"></div>
+		</div>
 	</div>
-   </div>
-{{/each}}
 
-
-</script>
+	<script id="tbody-template" type="text/x-handlebars-template">
+	{{#each list}}
+	<div class='all' data-no ={{no}}>
+		<div class='img'><img id="home-img" src="/upload/{{fileList}}_414.png"></div>
+		<div class='infomation'>
+			<p>{{bw_titl}}</p>
+	    	<span class="date">날짜 {{bw_wdt}}</span>
+		</div>
+	</div>
+	{{/each}}
+	</script>
 </body>
 </html>
