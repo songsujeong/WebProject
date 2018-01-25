@@ -3,7 +3,6 @@ package project.control.json;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnails;
-import project.control.json.JsonResult;
 import project.domain.Board;
 import project.service.BoardService;
 
@@ -53,18 +51,19 @@ public class BoardControl {
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isEmpty()) 
 				continue;
-
-			File file = new File(servletContext.getRealPath("/upload/" + files[i].getOriginalFilename()));
-			System.out.println(servletContext.getRealPath("/upload/" + files[i].getOriginalFilename()));
+			
+			String newFilename = this.getNewFilename();
+			File file = new File(servletContext.getRealPath("/upload/" + newFilename));
+			System.out.println(servletContext.getRealPath("/upload/" + newFilename));
 			files[i].transferTo(file);
 
 			System.out.println(files[i]);
-			File thumbnail = new File(servletContext.getRealPath("/upload/" +  files[i].getOriginalFilename() + "_190"));
+			File thumbnail = new File(servletContext.getRealPath("/upload/" + newFilename + "_190"));
 			Thumbnails.of(file).size(190, 150).outputFormat("png").toFile(thumbnail);
-			thumbnail = new File(servletContext.getRealPath("/upload/" +  files[i].getOriginalFilename() + "_414"));
+			thumbnail = new File(servletContext.getRealPath("/upload/" + newFilename + "_414"));
 			Thumbnails.of(file).size(414, 350).outputFormat("png").toFile(thumbnail);
 
-			fileList.add( files[i].getOriginalFilename());
+			fileList.add(newFilename);
 		}
 		if (titleName != null) {
 			for (int i = 0; i < files.length; i++) {
@@ -94,13 +93,88 @@ public class BoardControl {
 		return new JsonResult(JsonResult.SUCCESS, "ok");
 	}
 
+//	@RequestMapping("boardUpdate")
+//	public JsonResult conUpdate(Board board) throws Exception {
+//		boardService.boardUpdate(board);
+//		return new JsonResult(JsonResult.SUCCESS, "ok");
+//	}
+
 	@RequestMapping("boardUpdate")
-	public JsonResult conUpdate(Board board) throws Exception {
-		boardService.boardUpdate(board);
-		return new JsonResult(JsonResult.SUCCESS, "ok");
-	}
+  public JsonResult updateBoard(Board board, MultipartFile[] files, String[] delImage, int indexPic) throws Exception {
+    System.out.println("update control!!");
+    System.out.println("board" + board);
+    System.out.println("delImage:" + delImage);
+    
+    // 1 =  업로드 안했지만 전타이틀 사진과 같을 때  
+    // 2 = 업로드 안했지만 타이틀이 바뀜 
+    // 3 = 새로 업로드된 사진이 타이틀 사진일때
+    // 4 = 새로 업로드 됬지만 전타이틀 사진과 같을때 
+    // 5 = 새로 업로드 됬지만 전타이틀 사진과 다르고, 전에 올린사진 중에 하나가 타이틀 일때.
+    System.out.println("indexPic:"+ indexPic); 
+ // 대표 이미지 초기화
+    // 2 3 5 일떄 초기화
+    if (indexPic == 2 || indexPic == 3 || indexPic ==5) 
+      boardService.titleImageInit(board.getNo());
+    String titleName = board.getTitlePic();
+    int titleNo=0;
 
+    System.out.println(titleName);
+    ArrayList<String> fileList = new ArrayList<>();
+    
+        
+    
+  
+    if(delImage != null) {
+      System.out.println("컨트롤~이미지 삭제!!!");
+      for (String delI : delImage){
+        boardService.delAddImage(delI);
+      }
+    }
+    
+    if (files != null) {
+      for (int i = 0; i < files.length; i++) {
+        if (files[i].isEmpty()) 
+          continue;
+        
+        String newFilename = this.getNewFilename();
+        File file = new File(servletContext.getRealPath("/upload/" + newFilename));
+        System.out.println(servletContext.getRealPath("/upload/" + newFilename));
+        files[i].transferTo(file);
 
+        System.out.println(files[i]);
+        File thumbnail = new File(servletContext.getRealPath("/upload/" + newFilename + "_190"));
+        Thumbnails.of(file).size(190, 150).outputFormat("png").toFile(thumbnail);
+        thumbnail = new File(servletContext.getRealPath("/upload/" + newFilename + "_414"));
+        Thumbnails.of(file).size(414, 350).outputFormat("png").toFile(thumbnail);
+
+        fileList.add(newFilename);
+      }
+     
+      if (titleName != null) {
+        for (int i = 0; i < files.length; i++) {
+          if (files[i].getOriginalFilename().equals(titleName))
+            titleNo = i;
+        }
+      }
+    
+     System.out.println("fileList:" + fileList);
+     board.setFileList(fileList);
+     System.out.println("board.getFileList()" + board.getFileList());
+    }
+    
+    if (indexPic == 2 || indexPic == 3 || indexPic ==5) 
+      boardService.updateTitlePic(titleName);
+    boardService.updateBoard(board, titleNo);
+     return new JsonResult(JsonResult.SUCCESS, "ok");
+  }
+	
+	int count = 0;
+  synchronized private String getNewFilename() {
+    if (count > 100) {
+      count = 0;
+    }
+    return String.format("%d_%d", System.currentTimeMillis(), ++count); 
+  }
 }
 
 

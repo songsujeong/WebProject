@@ -44,7 +44,8 @@
   </select>
   
   <select id="selectOne" resultMap="boardMap" parameterType="int">
-    select  m.name, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bwno, bf.filename, bf.titlepic, m.mno
+    select  m.name, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bwno, bf.filename, m.mno,
+     (select filename from boardfile where bwno = #{no} and titlepic = 1) as titlepic
     from boardwrite bw inner join member m on bw.mno = m.mno
                        left outer join boardfile bf on bw.bwno = bf.bwno
     where bw.bwno= #{no}
@@ -62,7 +63,31 @@
     delete from boardwrite where bwno=#{no}
   </delete>
   
-
+	<delete id="delAddImage" parameterType="string">
+    delete from boardfile
+    where filename=#{delI}
+  </delete>
+  
+  <update id="updateBoard" parameterType="board" >
+    update boardwrite set 
+      bw_titl=#{bw_titl}, 
+      bw_con=#{bw_con}, 
+      bw_edt=curdate()
+      where bwno = #{no}
+  </update>
+  
+  <update id="titleImageInit" parameterType="int"  >
+    update boardfile set
+          titlePic=0
+          where bwno =#{no}
+  </update>
+  
+  <update id="updateTitlePic" parameterType="string" >
+    update boardfile set
+      titlePic = 1
+      where filename = #{titleName}
+  </update>
+  
   <update id="boardUpdate" parameterType="board">
     update boardwrite set 
       bw_titl=#{bw_titl}, 
@@ -71,5 +96,6 @@
       where bwno = #{no}
   </update>
   
+
 
 </mapper>

@@ -13,4 +13,8 @@ public interface BoardService {
   Board get(int no) throws Exception;
   void remove(int no) throws Exception;
   void boardUpdate(Board board) throws Exception;
+  void titleImageInit(int no);
+  void delAddImage(String delI);
+  void updateTitlePic(String titleName);
+  void updateBoard(Board board, int titleNo);
 }

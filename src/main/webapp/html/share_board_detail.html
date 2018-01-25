@@ -53,9 +53,10 @@
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
 <script id="detail-template" type="text/x-handlebars-template">
 {{#each fileList}}
-      	<div class='img'><img id="home-img" src="/upload/{{fileName}}_414.png"></div>
+  <div class='ShareImgAdd'>
+		<img class='title_img' id="{{this}}" src="/upload/{{this}}_414.png" value="{{this}}_414.png">
+	</div>
 {{/each}}
-
 
 </script>
 </html>

@@ -17,11 +17,20 @@
 	margin-bottom: 20px;
 }
 
-#home-img
+.title_img
 {
-	float : left;
-	margin-left:65px;
-	margin-top: 20px;
+	width: 100%;
+}
+
+
+.ShareImgAdd
+{
+	float: left;
+	position: relative;
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 320px;
+    height: 200px;
 }
 
 .btn-container

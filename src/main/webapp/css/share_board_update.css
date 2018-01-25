@@ -5,13 +5,13 @@
 	margin: 100px auto;
 }
 
-.home-img
+.title_img
 {
 	width: 100%;
 }
 
 
-.img
+.ShareImgAdd
 {
 	float: left;
 	position: relative;
@@ -19,6 +19,7 @@
     margin-top: 10px;
     width: 320px;
     height: 200px;
+    overflow: hidden;
 }
 
 .btn-container

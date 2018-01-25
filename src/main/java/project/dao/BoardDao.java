@@ -15,4 +15,8 @@ public interface BoardDao {
   int delete(int no);
   int boardUpdate(Board board);
   int insertImg(HashMap<String, Object> valueMap);
+  void updateBoard(Board board);
+  void titleImageInit(int no);
+  void delAddImage(String delI);
+  void updateTitlePic(String titleName);
 }

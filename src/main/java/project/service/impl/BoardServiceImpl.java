@@ -76,5 +76,45 @@ public class BoardServiceImpl implements BoardService {
     }
   }
 
+  @Override
+  public void titleImageInit(int no) {
+    // TODO Auto-generated method stub
+    boardDao.titleImageInit(no);
+  }
+
+  @Override
+  public void delAddImage(String delI) {
+    // TODO Auto-generated method stub
+    System.out.println("imple 에서:" + delI);
+    boardDao.delAddImage(delI);
+  }
+
+  @Override
+  public void updateTitlePic(String titleName) {
+    // TODO Auto-generated method stub
+    boardDao.updateTitlePic(titleName);
+  }
+
+  @Override
+  public void updateBoard(Board board, int titleNo) {
+    // TODO Auto-generated method stub
+    System.out.println("implement updatePromotion");
+    boardDao.updateBoard(board);
+    
+    if(board.getFileList() !=null) {
+      for (int i = 0; i < board.getFileList().size(); i++) {
+        HashMap<String, Object> valueMap = new HashMap<>();
+        valueMap.put("no", board.getNo());
+        valueMap.put("img", board.getFileList().get(i));
+        if(i == titleNo)
+          valueMap.put("title", 1);
+        else
+          valueMap.put("title", 0);
+        System.out.println(valueMap);
+        boardDao.insertImg(valueMap);
+      }
+    }
+  }
+
 }
 
