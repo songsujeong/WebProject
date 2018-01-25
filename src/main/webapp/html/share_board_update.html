@@ -55,7 +55,10 @@
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
 <script id="detail-template" type="text/x-handlebars-template">
 {{#each fileList}}
-      	<div class='img'><img id="home-img" src="/upload/{{fileName}}_414.png"></div>
+  <div class='img'>
+		<img id="home-img" src="/upload/{{fileName}}_414.png" value="{{fileName}}_414.png">
+		<p><i class='fa fa-times selFile' aria-hidden='true' value="{{fileName}}_414.png"></i></p>
+	</div>
 {{/each}}
 </script>
 

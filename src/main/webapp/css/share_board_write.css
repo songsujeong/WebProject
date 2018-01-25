@@ -7,13 +7,13 @@
 
 .title_img
 {
-	width: 320px;
-    height: 200px;
+	width: 100%;
 }
 
 .ShareImgAdd
 {
 	float: left;
+	position: relative;
     margin-left: 5px;
     margin-top: 10px;
     width: 320px;
@@ -29,4 +29,15 @@
 {
 	resize: none;
 	height: 300px
+}
+
+.title_select {
+  border: 3px solid #F7AC1A;
+}
+
+.AddRemove, .selFile {
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  font-size: 16px;
 }
