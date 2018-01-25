@@ -16,7 +16,7 @@ $(document).ready(function(){
 	$('#img_upload').on('change', handleFileSelect);
 
 	selDiv = $(".selectedFiles");
-
+  $("body").on("click", ".selFile", removeFile);
 });
 
 
@@ -35,10 +35,11 @@ function handleFileSelect(e) {
 
 		reader.onload = function (e) {
 
-			var html = "<div class='ShareImgAdd'>" +
-			"<img src=\"" + e.target.result + "\" data-file='"+f.name+"' value='"+f.name+"' class='title_img'  title='Click to remove'>" +
-			"<p><i class='selFile' aria-hidden='true' value="+ f.name +"></i></p>" +
-			"</div>";
+		  var html = "<div class='ShareImgAdd'>" +
+      "<img src=\"" + e.target.result + "\" data-file='"+f.name+"' value='"+f.name+"' class='title_img'  title='Click to remove'>" +
+      "<p><i class='fa fa-times selFile' aria-hidden='true' value="+ f.name +"></i></p>" +
+      "</div>";
+
 
 			selDiv.append(html);
 			titlePic = $('.title_img');
@@ -55,7 +56,7 @@ function handleFileSelect(e) {
 
 }
 
-/*function removeFile(e) {
+function removeFile(e) {
   e.preventDefault();
   var file = $(this).attr("value");
   for(var i=0;i<storedFiles.length;i++) {
@@ -67,7 +68,7 @@ function handleFileSelect(e) {
   }
   console.log(storedFiles)
   $(this).parent().parent().remove();
-}*/
+}
 
 
 
