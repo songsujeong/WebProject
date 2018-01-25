@@ -14,34 +14,28 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.fabric.xmlrpc.base.Member;
+import project.domain.Member;
 
-@WebFilter({"/html/"})
+
+@WebFilter({"/html/share_board_detail.html", "/html/share_board_write.html", "/html/share_board_update.html"})
 public class AuthCheckFilter implements Filter {
 
-  @Override
-  public void init(FilterConfig filterConfig) throws ServletException {
-  }
+	public void destroy() {}
 
-  @Override
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-      throws IOException, ServletException {
-    HttpServletRequest httpRequest = (HttpServletRequest) request;
-    HttpServletResponse httpResponse = (HttpServletResponse) response;
-    
-    Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
-    System.out.println(loginMember);
-//    System.out.println("loginMember: " + loginMember);
-    if (loginMember == null) { // 쿠키에 세션ID가 없다면 로그인 화면으로 보낸다.
-      httpResponse.sendRedirect("/p-desktop/bookList.html");
-      return;
-    }
-    
-    // 다음 필터 또는 서블릿을 실행해야 한다.
-    chain.doFilter(request, response);
-  }
+	   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
+	       throws IOException, ServletException {
+	     HttpServletRequest httpRequest = (HttpServletRequest) request;
+	     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-  @Override
-  public void destroy() {}
+	     Member loginMember = (Member)httpRequest.getSession().getAttribute("loginMember");
+	     if (loginMember == null) { // 쿠키에 세션 아이디가 없다면
+	       httpResponse.sendRedirect("../html/login.html"); // 로그인 화면으로 보낸다.
+	      return;
+	     }
+	    // 그 밖(쿠키에 세션아이디가 있다면, 로그인 했다면) 다음 필터 또는 서블릿을 실행해야 한다.
+	      chain.doFilter(request, response);
+	   }
 
-}
+	   public void init(FilterConfig fConfig) throws ServletException {}
+
+	}

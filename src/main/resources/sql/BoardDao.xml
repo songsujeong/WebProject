@@ -16,6 +16,7 @@
     <result column="bw_hits" property="bw_hits"/>
     <result column="bw_div" property="bw_div"/>
     <result column="bw_filepath" property="bw_filepath"/>
+    <result column="titlepic" property="titlePic"/>
 	<collection property="fileList" ofType="string">
        <result column="filename"/>
     </collection>
@@ -43,7 +44,7 @@
   </select>
   
   <select id="selectOne" resultMap="boardMap" parameterType="int">
-    select  m.name, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bwno, bf.filename, m.mno
+    select  m.name, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bwno, bf.filename, bf.titlepic, m.mno
     from boardwrite bw inner join member m on bw.mno = m.mno
                        left outer join boardfile bf on bw.bwno = bf.bwno
     where bw.bwno= #{no}
