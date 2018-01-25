@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../css/share_board_write.css">
+<link rel="stylesheet" href="../css/share_board_update.css">
 <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 <script src='../node_modules/jquery/dist/jquery.min.js'></script>
 <script src="../node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
@@ -12,24 +12,25 @@
 <script src="../node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script src="../node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
 <script src="../node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
-<title>쉐어하우스 등록</title>
+<title>쉐어하우스 수정</title>
 </head>
 <body>
 <div id="header"></div>
 
- <div class="share_board_write_container">
+ <div class="share_board_update_container">
  	<div class="btn-container"> 
-		<button class="btn btn-default" id="add">등록</button>
-		<button class="btn btn-default" id="cln">취소</button>
+		<button class="btn btn-default" id="update-btn">수정</button>
+		<button class="btn btn-default" id="cln-btn">취소</button>
 	</div> 
  	<div class="form-group">
 	 	<label for="title">제목</label>
-	  	<input type="text" class="form-control" id="bw_titl" placeholder="제목을 입력하세요">
+	 	<textarea class="form-control" id="titl"></textarea>
+
 	</div>
  	
  	<div class="form-group">
 	 	<label for="comment">내용</label>
-	 	<textarea class="form-control" rows="10" id="bw_con" placeholder="내용을 입력하세요"></textarea>
+	 	<textarea class="form-control" rows="10" id="con"></textarea>
 	</div>
 	
 	<div class="inputFiles">
@@ -41,9 +42,20 @@
 			</div>
 		</div> 
 	</div>
+	
+	 <div class="file-box" id="fileList">
+	 	</div>
+	
 </div>
  
 
 </body>
-<script type="text/javascript" src='../js/share_board_write.js'></script>
+<script type="text/javascript" src='../js/share_board_update.js'></script>
+<script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
+<script id="detail-template" type="text/x-handlebars-template">
+{{#each fileList}}
+      	<div class='img'><img id="home-img" src="/upload/{{fileName}}_414.png"></div>
+{{/each}}
+</script>
+
 </html>

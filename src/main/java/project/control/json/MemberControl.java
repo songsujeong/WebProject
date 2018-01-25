@@ -22,7 +22,6 @@ public class MemberControl {
 	  
 	  try {
 		  memberService.membAdd(member);
-		  System.out.println(" memberService.add2  메소드 실행끝");
 	  } catch (Exception e) {
 		  result.setStatus(JsonResult.ERROR);
 		  result.setData(e.getMessage());
@@ -35,12 +34,3 @@ public class MemberControl {
 	  	return result;
   }
 }
-
-
-
-
-
-
-
-
-

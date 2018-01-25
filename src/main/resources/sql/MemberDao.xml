@@ -10,7 +10,6 @@
     <result column="email" property="email"/>
     <result column="name" property="name"/>
     <result column="pass" property="password"/>
-    <result column="posi" property="posi"/>
   </resultMap>
 
   <insert id="insert" parameterType="member">
@@ -25,7 +24,3 @@
   
   
 </mapper>
-
-
-
-

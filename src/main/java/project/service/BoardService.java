@@ -12,12 +12,5 @@ public interface BoardService {
   int suchGetSize(Map<String, String> keyword) throws Exception;
   Board get(int no) throws Exception;
   void remove(int no) throws Exception;
-  void conUpdate(Board board) throws Exception;
+  void boardUpdate(Board board) throws Exception;
 }
-
-
-
-
-
-
-

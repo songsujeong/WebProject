@@ -3,6 +3,7 @@
     background-color: #fff;
     border-color: #ccc;
     padding: 7px 11px 4px 11px;
+    width: 75px;
 }
 .share-board-container
 {
@@ -31,10 +32,14 @@
    font-weight: bold;
    color: #333;
 }
-.field2
+.login-yn
 {
-   margin: 20px 0 20px 36px;
+	font-weight: bold;
+	color: red;
+	margin-left: 10px;
+    margin-top: 50px;
 }
+
 .share-board-index
 {
    position: relative;
@@ -42,7 +47,8 @@
 
 #add-btn
 {
-   margin-left: 93.7%;
+   margin-left: 91.7%;
+   margin-bottom: -70px;
 
 }
 .house-div

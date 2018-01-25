@@ -13,6 +13,6 @@ public interface BoardDao {
   int suchCountAll(Map<String, String> keyword);
   Board selectOne(int no);
   int delete(int no);
-  int contextUpdate(Board board);
+  int boardUpdate(Board board);
   int insertImg(HashMap<String, Object> valueMap);
 }

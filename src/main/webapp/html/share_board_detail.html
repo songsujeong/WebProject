@@ -10,6 +10,12 @@
 <div id="header"></div>
 
  <div class="share-board-detail-container">
+ 	<div class="btn-container" > 
+		
+		<button class="btn btn-default" id="update-btn">수정</button>
+		<button class="btn btn-default" id="delete-btn">삭제</button>
+		<button class="btn btn-default" id="confirm-btn">목록으로</button>
+	</div> 
  
  	<div class="form-group">
 	 	<label for="title">제목</label>
@@ -25,7 +31,7 @@
 	 	</div>
 	
 	
-	<div class="inputFiles">
+<!-- 	<div class="inputFiles">
 		<div class="form-group"> 
 			<label for="File">File upload</label> 
 			<input type="file" id="img_upload" name="files" multiple> 
@@ -34,15 +40,8 @@
 			</div>
 		</div> 
 	</div>
-		
-	<div class="center-block" style='width:200px'> 
+		 -->
 
-		<button class="btn btn-default" id="cln-btn">취소</button>
-		
-		<button class="btn btn-default" id="update-btn">수정</button>
-		<button class="btn btn-default" id="delete-btn">삭제</button>
-		<button class="btn btn-default" id="confirm-btn">목록으로</button>
-	</div> 
 		
 </div>
  
@@ -53,9 +52,7 @@
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
 <script id="detail-template" type="text/x-handlebars-template">
 {{#each fileList}}
-   
       	<div class='img'><img id="home-img" src="/upload/{{fileName}}_414.png"></div>
-   </div>
 {{/each}}
 
 

@@ -1,14 +1,17 @@
-var Titl = $('#bw_titl');
-var Con = $('#bw_con');
-var Div = "board";
+var title=$('#titl');
+var creater=$('#name');
+var con=$('#con');
+var wdt=$('#bw_wdt');
+var fileList = $('#fileList');
 var mno;
+var boardmno;
 
+var no = 0;
 var files;
 var selDiv = "";
 var storedFiles = [];
 var titlePic
 var titleSelectPic;
-
 
 
 $(document).ready(function(){
@@ -17,9 +20,49 @@ $(document).ready(function(){
 
 	selDiv = $(".selectedFiles");
 
+	$("body").on("click", ".selFile", removeFile);
 });
 
 
+
+try {
+	no = location.href.split('?')[1].split('=')[1]
+} catch (err) {}
+
+$.getJSON('detail.json', {'no': no}, function(result) {
+	var data = result.data;
+	title.text(data.bw_titl);
+	con.text(data.bw_con);
+	title.attr('data-no', data.no);
+
+	var newFileList = [] // 새롭게 파일을 네이밍 해줄 배열을 만든다.
+	for(var i = 0; i < data.fileList.length; i++) {
+		// fileName 이라는 이름을 붙여서 파일 이름을 저장한다.
+		// ex) fileList
+		//        |->{fileName : 공.PNG}
+		newFileList[i] = {fileName: data.fileList[i]};
+	}
+
+	// 기존의 data아래의 fileList 에 새로 만든 배열값을 넣어준다.
+	data.fileList = newFileList;
+
+	// 네이밍된 데이터 값을 확인할 수 있다.
+	console.log(data.fileList);
+
+	// 템플릿 소스를 가지고 템플릿을 처리할 함수를 얻는다.
+
+	var templateFn = Handlebars.compile($('#detail-template').text());
+	var generatedHTML = templateFn(result.data);
+	console.log(result.data);
+	var container = $('#fileList');
+	container.text('');
+	console.log(container);
+	container.html(generatedHTML);
+
+});
+
+
+//file 선택
 function handleFileSelect(e) {
 	files = e.target.files
 	var filesArr = Array.prototype.slice.call(files);
@@ -31,7 +74,6 @@ function handleFileSelect(e) {
 		storedFiles.push(f);
 		console.log(storedFiles);
 		var reader = new FileReader();
-//		console.log('위쪽FileReader:' + reader.storedFiles);
 
 		reader.onload = function (e) {
 
@@ -46,28 +88,25 @@ function handleFileSelect(e) {
 				titlePic.parent().removeClass('title_select');
 				$(this).parent().addClass('title_select');
 				titleSelectPic = $('.title_select').children().attr('value');
-				console.log('titleSelectPic:' + titleSelectPic);
 			})
-
 		}
 		reader.readAsDataURL(f);
-	});
+	})
+};
 
+function removeFile(e) {
+	e.preventDefault();
+	var file = $(this).attr("value");
+	for(var i=0;i<storedFiles.length;i++) {
+		if(storedFiles[i].name === file) {
+			storedFiles.splice(i,1);
+
+			break;
+		}
+	}
+	console.log(storedFiles);
+	$(this).parent().parent().remove();
 }
-
-/*function removeFile(e) {
-  e.preventDefault();
-  var file = $(this).attr("value");
-  for(var i=0;i<storedFiles.length;i++) {
-    if(storedFiles[i].name === file) {
-      storedFiles.splice(i,1);
-
-      break;
-    }
-  }
-  console.log(storedFiles)
-  $(this).parent().parent().remove();
-}*/
 
 
 
@@ -79,7 +118,7 @@ $('#img_upload').fileupload({
 
 	add: function(e, data) {
 		console.log('add()...');
-		data.files = storedFiles;
+		data.files = storedFiles
 		console.log(data.files);
 		$.each(data.files, function (index, file) {
 			console.log('Added file: ' + file.name);
@@ -87,7 +126,7 @@ $('#img_upload').fileupload({
 		$('#add').click(function() {
 			titleSelectPic  = $('.title_select').children().attr('value');
 			if(titleSelectPic == undefined){
-				alert("대표이미지를 선택해주세요")
+				alert("대표이미지를 선택해주세요");
 			} else {
 				data.submit(); // submit()을 호출하면, 서버에 데이터를 보내기 전에 submit 이벤트가 발생한다.
 			}
@@ -98,11 +137,11 @@ $('#img_upload').fileupload({
 		console.log('done()...');
 		console.log(data.result);
 		location.href = 'share_board.html';
-		console.log('서버갔다옴.');
+			console.log('서버갔다옴.');
 	},
 	submit: function (e, data) {
 		console.log('submit()...');
-		console.log(titleSelectPic)
+		console.log(titleSelectPic);
 		// data 객체의 formData 프로퍼티에 일반 파라미터 값을 설정한다.
 		data.formData = {
 			'mno' : mno,
@@ -117,9 +156,22 @@ $('#img_upload').fileupload({
 
 
 
-$('#cln').on('click', function(e){
+$('#update-btn').on('click',function() {
+	$.post('boardUpdate.json', {
+		'bw_titl': title.val(),
+		'bw_con': con.val(),
+		'no': no
+	}, function(result) {
+		location.href = 'share_board.html'
+	}, 'json')
+
+});
+
+$('#cln-btn').on('click', function(e){
 	location.href = 'share_board.html';
 })
+
+
 
 $.getJSON('userinfo.json', function(result) {
 	mno = result.data.no;

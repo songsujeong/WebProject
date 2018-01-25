@@ -49,43 +49,20 @@
     where bw.bwno= #{no}
   </select>
   
-   <select id="selectListByTitle" resultMap="boardMap" parameterType="map">
-    select bw.bwno, bw.bw_titl, bw.bw_con, bw.bw_wdt, bw.bw_filepath, m.name
-    from boardwrite bw inner join member m on bw.mno = m.mno
-    where bw_titl like '%${keyword}%' and bw_div = 'board'
-    ORDER BY bwno DESC
-   </select>
    
   <select id="countAll" resultType="int">
     select count(*)
     from boardwrite
     where bw_div = "board"
   </select>
-  
-  <select id="suchCountAll" resultType="int" parameterType="map">
-    select count(*)
-    from boardwrite bw inner join member m on bw.mno = m.mno
-    where bw_titl like '%${keyword}%' 
-  </select>
-
-
+ 
   
   <delete id="delete" parameterType="int">
     delete from boardwrite where bwno=#{no}
   </delete>
   
-  
-  
-<!--   <update id="update2" parameterType="board">
-    update boardfile set
-      bwno = #{no}, 
-      filepath=#{filePath}, 
-      filename=#{fileName}
-      where bwno = #{no}
-  </update>
-   -->
-  
-  <update id="contextUpdate" parameterType="board">
+
+  <update id="boardUpdate" parameterType="board">
     update boardwrite set 
       bw_titl=#{bw_titl}, 
       bw_con=#{bw_con}, 
@@ -93,10 +70,5 @@
       where bwno = #{no}
   </update>
   
-  <update id="hitsUpdate" parameterType="int">
-  UPDATE BOARDWRITE 
-     SET BW_HITS = BW_HITS + 1 
-   WHERE BWNO = #{bwno}
-  </update>
-</mapper>
 
+</mapper>

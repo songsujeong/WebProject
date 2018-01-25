@@ -5,8 +5,8 @@ public class JsonResult {
   public static final String FAIL = "fail";
   public static final String ERROR = "error";
   
-  String status;
-  Object data;
+  private String status;
+  private Object data;
   
   public JsonResult() {}
   

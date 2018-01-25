@@ -69,18 +69,12 @@ public class BoardServiceImpl implements BoardService {
   }
 
   
-  public void conUpdate(Board board) throws Exception {
-    int count = boardDao.contextUpdate(board);
+  public void boardUpdate(Board board) throws Exception {
+    int count = boardDao.boardUpdate(board);
     if (count < 1) {
       throw new Exception(board.getNo() + "번 강사를 찾을 수 없습니다.");
     }
   }
 
 }
-
-
-
-
-
-
 

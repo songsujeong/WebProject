@@ -3,19 +3,19 @@ package project.domain;
 import java.util.List;
 
 public class Board {
-	int no;
-	int mno;
-	int cno;
-	String name;
-	String bw_titl;
-	String bw_con;
-	String bw_wdt;
-	String bw_edt;
-	String bw_hits;
-	String bw_div;
-	String bw_filepath;
-	String titlePic;
-	List<String> fileList;
+	private int no;
+	private int mno;
+	private int cno;
+	private String name;
+	private String bw_titl;
+	private String bw_con;
+	private String bw_wdt;
+	private String bw_edt;
+	private String bw_hits;
+	private String bw_div;
+	private String bw_filepath;
+	private String titlePic;
+	private List<String> fileList;
 	
   @Override
   public String toString() {

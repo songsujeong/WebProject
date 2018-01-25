@@ -18,10 +18,11 @@ public class MemberServiceImpl implements MemberService {
   
   public Member getByEmailPassword(String email, String password) throws Exception {
 	    HashMap<String,Object> valueMap = new HashMap<>();
+	    
 	    valueMap.put("email", email);
-	    System.out.println("service들어옴");
-    valueMap.put("password", password);
-    return memberDao.selectOneByEmailPassword(valueMap);
+	    valueMap.put("password", password);
+    
+	    return memberDao.selectOneByEmailPassword(valueMap);
   }
   
   
@@ -30,10 +31,3 @@ public class MemberServiceImpl implements MemberService {
     memberDao.insert(member);
   }
 }
-
-
-
-
-
-
-

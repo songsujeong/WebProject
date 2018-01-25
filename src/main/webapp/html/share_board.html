@@ -12,23 +12,23 @@
 <div id="header"></div>
 <div class="share-board-container">
    <div class="share-board-index">
+  
       <button class="btn btn-default" id="add-btn">등록</button>
     <div class="search-box">
       <div class="field">
-       <span class="house-select-titl">하우스 찾기</span>
+       <span class="house-select-titl">검색</span>
        <input class="text-input"type="search" placeholder="ex) 00역 / 00대학교" id="keyword">
       </div>
 
-      <div class="field2">
+      <span class="field2">
        <button class="btn btn-default" id="login-btn">로그인</button>
        <button class="btn btn-default" id="join-btn">회원가입</button>
-         <button class="btn btn-default" id="logout-btn">로그아웃</button>
-
-       <!-- <button class="btn btn-default" id="logout_btn">회원가입</button> -->
-      </div>
+       <button class="btn btn-default" id="logout-btn">로그아웃</button>
+      </span>
+       <div class="login-yn">※로그인 후 이용이 가능합니다※</div>
    </div>
    <div class="house-div"></div>
-   <div class="house-view">하우스 보기</div>
+   <div class="house-view"></div>
    
    <div class="house-container"id="share-container">
   </div>
@@ -44,11 +44,10 @@
 <script id="tbody-template" type="text/x-handlebars-template">
 {{#each list}}
     <div class='all' data-no ={{no}}>
-      <div class='img'><img id="home-img" src="/upload/{{fileList}}_190.png"></div>
+      <div class='img'><img id="home-img" src="/upload/{{fileList}}_414.png"></div>
        <div class='infomation'>
        <p>{{bw_titl}}</p>
 	   <span class="date">날짜 {{bw_wdt}}</span>
-       <span class="like_people">추천 {{bw_like}}</span>
 	</div>
    </div>
 {{/each}}

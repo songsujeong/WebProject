@@ -1,12 +1,12 @@
 package project.domain;
 
 public class Member {
-	int no;
-	String email;
-	String name;
-	String password;
-	String tel;
-	String posi;
+	private int no;
+	private String email;
+	private String name;
+	private String password;
+	private String tel;
+	private String posi;
 	
 	@Override
 	public String toString() {
