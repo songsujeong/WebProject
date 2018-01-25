@@ -35,10 +35,10 @@ function handleFileSelect(e) {
 
 		reader.onload = function (e) {
 
-			var html = "<div class='ShareImgAdd'>" +
-			"<img src=\"" + e.target.result + "\" data-file='"+f.name+"' value='"+f.name+"' class='title_img'  title='Click to remove'>" +
-			"<p><i class='selFile' aria-hidden='true' value="+ f.name +"></i></p>" +
-			"</div>";
+		  var html = "<div class='ShareImgAdd'>" +
+      "<img src=\"" + e.target.result + "\" data-file='"+f.name+"' value='"+f.name+"' class='title-image'  title='Click to remove'>" +
+      "<p><i class='fa fa-times selFile' aria-hidden='true' value="+ f.name +"></i></p>" +
+      "</div>";
 
 			selDiv.append(html);
 			titlePic = $('.title_img');
